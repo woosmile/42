@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:36:09 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/14 18:37:25 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:52:11 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,8 +183,8 @@ void	memchr_test()
 
 void	memcmp_test()
 {
-	char	*str1 = "memcmp test";
-	char	*str2 = "memcmp test";
+	char	*str1 = "";
+	char	*str2 = "";
 	
 	printf("\n-----memcmp test start-----\n");
 	printf("original memcmp : %d\n", memcmp(str1, str2, 5));
@@ -201,7 +201,123 @@ void	strnstr_test()
 	printf("original strnstr : %s\n", strnstr(str, to_find, 1));
 	printf("ft_strnstr       : %s\n", ft_strnstr(str, to_find, 1));
 	printf("-----strnstr test end-----\n");
+}
+
+void	isalpha_test()
+{
+	int	c[5];
+
+	c[0] = 'a';
+	c[1] = 'B';
+	c[2] = '@';
+	c[3] = -1;
+	c[4] = 0;
 	
+	printf("\n-----isalpha test start-----\n");
+	for (int i = 0; i < 5; i++)
+	{
+		printf("original isalpha : %d\n", isalpha(c[i]));
+		printf("ft_isalpha       : %d\n", ft_isalpha(c[i]));
+		if (i != 4)
+			printf("\n");
+	}
+	printf("-----isalpha test end-----\n");
+}
+
+void	isdigit_test()
+{
+	int	c[5];
+
+	c[0] = '0';
+	c[1] = '4';
+	c[2] = '9';
+	c[3] = -1;
+	c[4] = 0;
+	
+	printf("\n-----isdigit test start-----\n");
+	for (int i = 0; i < 5; i++)
+	{
+		printf("original isdigit : %d\n", isdigit(c[i]));
+		printf("ft_isdigit       : %d\n", ft_isdigit(c[i]));
+		if (i != 4)
+			printf("\n");
+	}
+	printf("-----isdigit test end-----\n");
+}
+
+void	isalnum_test()
+{
+	int	c[5];
+
+	c[0] = '0';
+	c[1] = 'E';
+	c[2] = 'a';
+	c[3] = -1;
+	c[4] = 0;
+	
+	printf("\n-----isalnum test start-----\n");
+	for (int i = 0; i < 5; i++)
+	{
+		printf("original isalnum : %d\n", isalnum(c[i]));
+		printf("ft_isalnum       : %d\n", ft_isalnum(c[i]));
+		if (i != 4)
+			printf("\n");
+	}
+	printf("-----isalnum test end-----\n");
+}
+
+void	isascii_test()
+{
+	int	c[5];
+
+	c[0] = '0';
+	c[1] = 'E';
+	c[2] = 'a';
+	c[3] = -1;
+	c[4] = 0;
+	
+	printf("\n-----isascii test start-----\n");
+	for (int i = 0; i < 5; i++)
+	{
+		printf("original isascii : %d\n", isascii(c[i]));
+		printf("ft_isascii       : %d\n", ft_isascii(c[i]));
+		if (i != 4)
+			printf("\n");
+	}
+	printf("-----isascii test end-----\n");
+}
+
+void	isprint_test()
+{
+	int	c[5];
+
+	c[0] = '0';
+	c[1] = 'E';
+	c[2] = 'a';
+	c[3] = -1;
+	c[4] = 0;
+	
+	printf("\n-----isprint test start-----\n");
+	for (int i = 0; i < 5; i++)
+	{
+		printf("original isprint : %d\n", isprint(c[i]));
+		printf("ft_isprint       : %d\n", ft_isprint(c[i]));
+		if (i != 4)
+			printf("\n");
+	}
+	printf("-----isprint test end-----\n");
+}
+
+void	strlen_test()
+{
+	char *str = "i love libft!";
+
+	printf("\n-----strlen test start-----\n");
+
+	printf("original strlen : %lu\n", strlen(str));
+	printf("ft_strlen       : %lu\n", ft_strlen(str));
+
+	printf("-----strlen test start-----\n");
 }
 
 int	main()
@@ -215,6 +331,12 @@ int	main()
 	memchr_test();
 	memcmp_test();
 	strnstr_test();
-
+	isalpha_test();
+	isdigit_test();
+	isalnum_test();
+	isascii_test();
+	isprint_test();
+	strlen_test();
+	
 	return (0);
 }

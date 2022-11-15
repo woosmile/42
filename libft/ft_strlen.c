@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 17:31:31 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/15 16:45:45 by woosekim         ###   ########.fr       */
+/*   Created: 2022/11/15 16:41:29 by woosekim          #+#    #+#             */
+/*   Updated: 2022/11/15 16:45:11 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+size_t	ft_strlen(const char *s)
 {
-	const unsigned char	*s1_temp;
-	const unsigned char	*s2_temp;
-	size_t				i;
+	unsigned long	len;
 
-	s1_temp = s1;
-	s2_temp = s2;
-	i = 0;
-	while (i < n)
-	{
-		if (s1_temp[i] != s2_temp[i])
-			return ((int)s1_temp[i] - s2_temp[i]);
-		i++;
-	}
-	return (0);
+	len = 0;
+	while (s[len] != 0)
+		len++;
+	return (len);
 }
