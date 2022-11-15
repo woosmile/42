@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:36:09 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/15 15:16:31 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:37:25 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ void	strnstr_test()
 	printf("original strnstr : %s\n", strnstr(str, to_find, 1));
 	printf("ft_strnstr       : %s\n", ft_strnstr(str, to_find, 1));
 	printf("-----strnstr test end-----\n");
+	
 }
 
 int	main()
