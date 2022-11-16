@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:36:09 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/15 16:52:11 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:14:28 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,8 +183,8 @@ void	memchr_test()
 
 void	memcmp_test()
 {
-	char	*str1 = "";
-	char	*str2 = "";
+	char	*str1 = "abcdefgh";
+	char	*str2 = "zxcvbb";
 	
 	printf("\n-----memcmp test start-----\n");
 	printf("original memcmp : %d\n", memcmp(str1, str2, 5));
@@ -320,6 +320,151 @@ void	strlen_test()
 	printf("-----strlen test start-----\n");
 }
 
+void	toupper_test()
+{
+	char	c = 'a';
+	printf("\n-----toupper test start-----\n");
+
+	printf("original toupper : %c\n", toupper(c));
+	printf("ft_toupper       : %c\n", ft_toupper(c));
+
+	printf("-----toupper test end-----\n");
+}
+
+void	tolower_test()
+{
+	char	c = 'A';
+	printf("\n-----tolower test start-----\n");
+
+	printf("original tolower : %c\n", tolower(c));
+	printf("ft_tolower       : %c\n", ft_tolower(c));
+
+	printf("-----tolower test end-----\n");
+}
+
+void	atoi_test()
+{
+	char	str[] = "    \t\n \t   \t   -0";
+
+	printf("\n-----atoi test start-----\n");
+
+	printf("original atoi : %d\n", atoi(str));
+	printf("ft_atoi       : %d\n", ft_atoi(str));
+
+	printf("-----atoi test end-----\n");
+}
+
+void	strlcpy_test()
+{
+	char	str1[100];
+	char	str2[100];
+	char	*str3 = "strlcpy strlcpy strlcpy test test test";
+	
+	printf("\n-----strlcpy test start-----\n");
+
+	printf("original strlcpy : %lu, %s\n", strlcpy(str1, str3, 50), str1);
+	printf("ft_strlcpy       : %lu, %s\n", ft_strlcpy(str2, str3, 50), str2);
+	
+	printf("-----strlcpy test end-----\n");
+}
+
+void	strlcat_test()
+{
+	char	str1[100] = "str1 strings + ";			//15
+	char	str2[100] = "str2 strings + ";			//15
+	char	*str3 = "strlcat strlcat test test";	//25
+	
+	printf("\n-----strlcat test start-----\n");
+
+	printf("original strlcat : %lu, %s\n", strlcat(str1, str3, 41), str1);
+	printf("ft_strlcat       : %lu, %s\n", ft_strlcat(str2, str3, 41), str2);
+
+	printf("-----strlcat test end-----\n");
+}
+
+void	strdup_test()
+{
+	char	*str = "string duplicate test";
+	char	*str_dup1;
+	char	*str_dup2;
+
+	printf("\n-----strdup test start-----\n");
+
+	str_dup1 = strdup(str);
+	str_dup2 = ft_strdup(str);
+
+	printf("original strdup : %s\n", str_dup1);
+	printf("ft_strdup       : %s\n", str_dup2);
+
+	printf("-----strdup test end-----\n");
+
+	free(str_dup1);
+	free(str_dup2);
+}
+
+void	calloc_test()
+{
+	char	*p1;
+	char	*p2;
+	int		count = 10;
+
+	printf("\n-----calloc test start-----\n");
+
+	printf("original calloc\n");
+	p1 = (char *)calloc(count, sizeof(char));
+	for(int	i = 0; i < count; i++)
+	{
+		printf("%d", p1[i]);
+		if (i != count - 1)
+			printf(", ");
+	}
+
+	printf("\n\noriginal calloc input value\n");
+	p1 = (char *)calloc(count, sizeof(char));
+	for(int	i = 0; i < count; i++)
+	{
+		p1[i] = 127;
+		printf("%d", p1[i]);
+		if (i != count - 1)
+			printf(", ");
+	}
+
+	printf("\n\nft_calloc\n");
+	p2 = (char *)ft_calloc(count, sizeof(char));
+	for(int	i = 0; i < count; i++)
+	{
+		printf("%d", p2[i]);
+		if (i != count - 1)
+			printf(", ");
+	}
+
+	printf("\n\nft_calloc input value\n");
+	p2 = (char *)ft_calloc(count, sizeof(char));
+	for(int	i = 0; i < count; i++)
+	{
+		p2[i] = 127;
+		printf("%d", p2[i]);
+		if (i != count - 1)
+			printf(", ");
+	}
+
+	printf("\n-----calloc test end-----\n");
+
+	free(p1);
+	free(p2);
+}
+
+void	ft_substr_test()
+{
+	char			*str = "\0";
+	unsigned int	start = 0;
+	size_t			len = 100000;
+
+	printf("\n-----ft_substr test start-----\n");
+	printf("%s\n", ft_substr(str, start, len));
+	printf("-----ft_substr test end-----\n");
+}
+
 int	main()
 {
 	memset_test();
@@ -337,6 +482,14 @@ int	main()
 	isascii_test();
 	isprint_test();
 	strlen_test();
+	toupper_test();
+	tolower_test();
+	atoi_test();
+	strlcpy_test();
+	strlcat_test();
+	strdup_test();
+	calloc_test();
+	ft_substr_test();
 	
 	return (0);
 }
