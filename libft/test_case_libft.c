@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:36:09 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/16 19:14:28 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:54:21 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ void	memmove_test()
 	memmove(arr1, arr2, 2);
 	for (int i = 0; i < 10; i++)
 		printf("%d ", arr1[i]);
+		
 	printf("\n-----memmove test end-----\n");
 }
 
@@ -156,8 +157,10 @@ void	strchr_test()
 	char *str = "welcome to woosekim evaluation!!@";
 
 	printf("\n-----strchr test start-----\n");
+
 	printf("original strchr : %s\n", strchr(str, 'w'));
 	printf("ft_strchr       : %s\n", ft_strchr(str, 'w'));
+
 	printf("-----strchr test end-----\n");
 }
 
@@ -166,8 +169,10 @@ void	strrchr_test()
 	char *str = "have a nice day!";
 
 	printf("\n-----strrchr test start-----\n");
+
 	printf("original strrchr : %s\n", strrchr(str, 0));
 	printf("ft_strrchr       : %s\n", ft_strrchr(str, 0));
+
 	printf("-----strrchr test end-----\n");
 }
 
@@ -176,8 +181,10 @@ void	memchr_test()
 	char	*str = "sweet dreams, my dear"; //21
 	
 	printf("\n-----memchr test start-----\n");
+
 	printf("original memchr : %s\n", memchr(str, 0, 5));
 	printf("ft_memchr       : %s\n", ft_memchr(str, 0, 5));
+
 	printf("-----memchr test end-----\n");
 }
 
@@ -187,8 +194,10 @@ void	memcmp_test()
 	char	*str2 = "zxcvbb";
 	
 	printf("\n-----memcmp test start-----\n");
+
 	printf("original memcmp : %d\n", memcmp(str1, str2, 5));
 	printf("ft_memcmp       : %d\n", ft_memcmp(str1, str2, 5));
+
 	printf("-----memcmp test end-----\n");
 }
 
@@ -198,8 +207,10 @@ void	strnstr_test()
 	char	*to_find = "c";
 
 	printf("\n-----strnstr test start-----\n");
+
 	printf("original strnstr : %s\n", strnstr(str, to_find, 1));
 	printf("ft_strnstr       : %s\n", ft_strnstr(str, to_find, 1));
+	
 	printf("-----strnstr test end-----\n");
 }
 
@@ -456,13 +467,101 @@ void	calloc_test()
 
 void	ft_substr_test()
 {
-	char			*str = "\0";
-	unsigned int	start = 0;
+	char			*str = "abc@dfad@fdga@010204";
+	unsigned int	start = '@';
+	char			*substr;
 	size_t			len = 100000;
 
 	printf("\n-----ft_substr test start-----\n");
-	printf("%s\n", ft_substr(str, start, len));
+
+	printf("original str : %s\n", str);
+	printf("start        : %c\n", start);
+
+	substr = ft_substr(str, start, len);
+	printf("substr       : %s\n", substr);
+	
 	printf("-----ft_substr test end-----\n");
+
+	free(substr);
+}
+
+void	ft_strjoin_test()
+{
+	char	*str1 = "zxcvzjoifjsdofajsdiofjasofjasiodfja + \\";
+	char	*str2 = "zxcmvlzjxcfidjfoaisdjfoaisjdfalisdjfaiojfosijfoaisjdfoajsdfiojasdoifjaosidfjaoisdjfa";
+	char	*strjoin;
+
+	printf("\n-----ft_strjoin test start-----\n");
+
+	printf("str1    : %s\n", str1);
+	printf("str2    : %s\n", str2);
+
+	strjoin = ft_strjoin(str1, str2);
+	printf("strjoin : %s\n", strjoin);
+
+	printf("-----ft_strjoin test end-----\n");
+
+	free(strjoin);
+}
+
+void	ft_strtrim_test()
+{
+	char	*s1 = "abcd";
+	char	*set = "bcaaaabbcc&*^$";
+	char	*strtrim;
+
+	printf("\n-----ft_strtrim test start-----\n");
+
+	strtrim = ft_strtrim(s1, set);
+	printf("s1      : %s\n", s1);
+	printf("set     : %s\n", set);	
+	printf("strtrim : %s\n", strtrim);
+
+	printf("-----ft_strtrim test end-----\n");
+
+	free(strtrim);
+}
+
+void	ft_split_test()
+{
+	char	*str = "\\ lostark overwatch2 leagueoflegends bigjaemi \\";
+	char	c = 0;
+	char	**split;
+
+	printf("\n-----ft_split test start-----\n");
+
+	printf("str      : %s\n", str);
+	printf("word     : %c\n\n", c);	
+	split = ft_split(str, c);
+	for(int i = 0; i < 2; i++)
+		printf("row %d    : %s\n", i, split[i]);
+		
+	printf("-----ft_split test end-----\n");
+
+	free(split);
+}
+
+void	ft_itoa_test()
+{
+	int		n[11] = {-2147483648, -10008, -100, -10, -1, 0, 1, 10, 100, 10008, 2147483647};
+	char	*str[11];
+
+	printf("\n-----ft_itoa test start-----\n");
+	
+	for (int i = 0; i < 11; i++)
+		str[i] = ft_itoa(n[i]);
+	for (int i = 0; i < 11; i++)
+	{
+		printf("integer n[%d] : %d\n", i, n[i]);
+		printf("string  n[%d] : %s\n", i, str[i]);
+		if (i != 10)
+			printf("\n");
+	}
+
+	printf("-----ft_itoa test end-----\n");
+
+	for (int i = 0; i < 11; i++)
+		free(str[i]);
 }
 
 int	main()
@@ -490,6 +589,10 @@ int	main()
 	strdup_test();
 	calloc_test();
 	ft_substr_test();
+	ft_strjoin_test();
+	ft_strtrim_test();
+	ft_split_test();
+	ft_itoa_test();
 	
 	return (0);
 }

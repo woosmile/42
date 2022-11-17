@@ -6,15 +6,15 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:37:17 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/15 16:42:34 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:49:01 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_isprint(int c)
+int	ft_isprint(int c)
 {
-	unsigned char c_temp;
+	unsigned char	c_temp;
 
 	c_temp = c;
 	if (c_temp >= 32 && c_temp <= 126)
