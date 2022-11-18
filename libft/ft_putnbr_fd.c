@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 18:14:03 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/18 16:02:22 by woosekim         ###   ########.fr       */
+/*   Created: 2022/11/18 15:35:52 by woosekim          #+#    #+#             */
+/*   Updated: 2022/11/18 16:23:03 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	check_len(int n)
+static size_t	check_len(int n)
 {
-	int		len;
+	size_t	len;
 	long	n_temp;
 
 	len = 0;
@@ -33,7 +33,7 @@ static int	check_len(int n)
 	return (len);
 }
 
-static void	input_number(int n, int len, char *str_num)
+static void	input_number(int n, size_t len, char *num_arr)
 {
 	long	n_temp;
 	int		i;
@@ -41,31 +41,34 @@ static void	input_number(int n, int len, char *str_num)
 	n_temp = n;
 	i = len - 1;
 	if (n_temp == 0)
-		str_num[0] = '0';
+		num_arr[0] = '0';
 	if (n_temp < 0)
-	{
-		str_num[0] = '-';
 		n_temp = n_temp * -1;
-	}
-	while (n_temp > 0)
+	while (i >= 0)
 	{
-		str_num[i] = (n_temp % 10) + '0';
+		num_arr[i] = (n_temp % 10) + '0';
 		n_temp = n_temp / 10;
 		i--;
 	}
-	str_num[len] = 0;
+	i++;
+	if (n < 0)
+		num_arr[i] = '-';
 }
 
-char	*ft_itoa(int n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int		len;
-	char	*str_num;
-	int		i;
+	size_t	len;
+	size_t	i;
+	char	num_arr[11];
 
 	len = check_len(n);
-	str_num = (char *)malloc((len + 1) * sizeof(char));
-	if (!str_num)
-		return (0);
-	input_number(n, len, str_num);
-	return (str_num);
+	i = 0;
+	while (i < 11)
+	{
+		num_arr[i] = 0;
+		i++;
+	}
+	input_number(n, len, num_arr);
+	i = len - 1;
+	write (fd, num_arr, len);
 }

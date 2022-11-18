@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:36:09 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/17 18:54:21 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/18 16:37:31 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -564,6 +564,91 @@ void	ft_itoa_test()
 		free(str[i]);
 }
 
+char	f_ft_strmapi(unsigned int i, char c)
+{
+	c = ft_toupper(c);
+	
+	return (c);
+}
+
+void	ft_strmapi_test()
+{
+	char	*str1 = "abcdefghi9182847@!#";
+	char	*str2;
+
+	printf("\n-----ft_strmapi test start-----\n");
+	
+	printf("before : %s\n", str1);
+	str2 = ft_strmapi(str1, f_ft_strmapi);
+	printf("after  : %s\n", str2);
+
+	printf("-----ft_strmapi test end-----\n");
+
+	free(str2);
+}
+
+void	f_ft_striteri(unsigned int i, char *str)
+{
+	str[i] = ft_tolower(str[i]);
+}
+
+void	ft_striteri_test()
+{
+	char	str[] = "ABCDEFG684897!@#!@$!";
+
+	printf("\n-----ft_striteri test start-----\n");
+	
+	printf("before : %s\n", str);
+	ft_striteri(str, f_ft_striteri);
+	printf("after  : %s\n", str);
+
+	printf("-----ft_striteri test end-----\n");	
+}
+
+void	ft_putchar_fd_test()
+{
+	char	c = '@';
+
+	printf("\n-----ft_putchar_fd test start-----\n");
+
+	ft_putchar_fd(c, 1);
+
+	printf("\n-----ft_putchar_fd test end-----\n");	
+}
+
+void	ft_putstr_fd_test()
+{
+	char	*str = "can you print this strings?";
+
+	printf("\n-----ft_putstr_fd test start-----\n");
+
+	ft_putstr_fd(str, 1);
+
+	printf("\n-----ft_putstr_fd test end-----\n");	
+}
+
+void	ft_putendl_fd_test()
+{
+	char	*str = "can you print this strings with newline?";
+
+	printf("\n-----ft_putendl_fd test start-----\n");
+
+	ft_putendl_fd(str, 1);
+
+	printf("\n-----ft_putendl_fd test end-----\n");
+}
+
+void	ft_putnbr_fd_test()
+{
+	int	n = -2147483648;
+
+	printf("\n-----ft_putnbr_fd test start-----\n");
+
+	ft_putnbr_fd(n, 1);
+
+	printf("\n-----ft_putnbr_fd test end-----\n");
+}
+
 int	main()
 {
 	memset_test();
@@ -593,6 +678,12 @@ int	main()
 	ft_strtrim_test();
 	ft_split_test();
 	ft_itoa_test();
+	ft_strmapi_test();
+	ft_striteri_test();
+	ft_putchar_fd_test();
+	ft_putstr_fd_test();
+	ft_putendl_fd_test();
+	ft_putnbr_fd_test();
 	
 	return (0);
 }
