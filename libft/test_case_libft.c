@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:36:09 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/18 16:37:31 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:18:06 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -321,7 +321,7 @@ void	isprint_test()
 
 void	strlen_test()
 {
-	char *str = "i love libft!";
+	char *str = "";
 
 	printf("\n-----strlen test start-----\n");
 
@@ -355,7 +355,7 @@ void	tolower_test()
 
 void	atoi_test()
 {
-	char	str[] = "    \t\n \t   \t   -0";
+	char	str[] = "1112144414424124124124";
 
 	printf("\n-----atoi test start-----\n");
 
@@ -649,6 +649,316 @@ void	ft_putnbr_fd_test()
 	printf("\n-----ft_putnbr_fd test end-----\n");
 }
 
+void	ft_lstnew_test()
+{
+	int	num = 100;
+	t_list	*node;
+
+	node = ft_lstnew(&num);
+	
+	printf("\n-----ft_lstnew test start-----\n");
+
+	//printf("node content   : %d\n", *(int *)(*node).content);
+	printf("node content   : %d\n", *(int *)node->content);
+	printf("node next addr : %p\n", node->next);
+
+	printf("-----ft_lstnew test end-----\n");
+
+	free(node);
+}
+
+void	ft_lstadd_front_test()
+{
+	t_list	*head;
+	t_list	*front;
+	t_list	*node1;
+	t_list	*node2;
+	t_list	*node3;
+	t_list	*curr;
+	int		i;
+
+	char	*content1 = "Head Node";
+	char	*content2 = "Middle Node1";
+	char	*content3 = "Middle Node2";
+	char	*content4 = "End Node";
+	char	*content5 = "New Head Node";	
+
+	head = ft_lstnew(content1);
+	node1 = ft_lstnew(content2);
+	node2 = ft_lstnew(content3);
+	node3 = ft_lstnew(content4);
+	front = ft_lstnew(content5);
+	
+	head->next = node1;
+	node1->next = node2;
+	node2->next = node3;
+
+	printf("\n-----ft_lstadd_front test start-----\n");
+	printf("<front add before>\n");
+	curr = head;
+	i = 0;
+	while (curr)
+	{
+		printf("%d node content   : %s\n", i, curr->content);
+		printf("%d node addr      : %p\n", i, curr);
+		printf("%d node next addr : %p\n\n", i, curr->next);
+		i++;
+		curr = curr->next;
+	}
+	printf("<front add after>\n");
+	ft_lstadd_front(&head, front);
+	curr = head;
+	i = 0;
+	while (curr)
+	{
+		printf("%d node content   : %s\n", i, curr->content);
+		printf("%d node addr      : %p\n", i, curr);
+		printf("%d node next addr : %p\n", i, curr->next);
+		i++;
+		curr = curr->next;
+		if (curr)
+			printf("\n");
+	}
+	printf("-----ft_lstadd_front test end-----\n");
+}
+
+void	ft_lstsize_test()
+{
+	t_list	*head;
+	t_list	*node1;
+	t_list	*node2;
+	t_list	*node3;
+	int		size;
+
+	char	*content1 = "Head Node";
+	char	*content2 = "Middle Node1";
+	char	*content3 = "Middle Node2";
+	char	*content4 = "End Node";
+
+	head = ft_lstnew(content1);
+	node1 = ft_lstnew(content2);
+	node2 = ft_lstnew(content3);
+	node3 = ft_lstnew(content4);
+	
+	head->next = node1;
+	node1->next = node2;
+	node2->next = node3;
+
+	size = ft_lstsize(head);
+
+	printf("\n-----ft_lstsize test start-----\n");
+	printf("list size : %d\n", size);
+	printf("-----ft_lstsize test end-----\n");
+}
+
+void	ft_lstlast_test()
+{
+	t_list	*head;
+	t_list	*node1;
+	t_list	*node2;
+	t_list	*node3;
+
+	char	*content1 = "Head Node";
+	char	*content2 = "Middle Node1";
+	char	*content3 = "Middle Node2";
+	char	*content4 = "End Node";
+
+	head = ft_lstnew(content1);
+	node1 = ft_lstnew(content2);
+	node2 = ft_lstnew(content3);
+	node3 = ft_lstnew(content4);
+	
+	head->next = node1;
+	node1->next = node2;
+	node2->next = node3;
+
+	printf("\n-----ft_lstlast test start-----\n");
+	printf("last list content : %s\n", ft_lstlast(head)->content);
+	printf("-----ft_lstlast test end-----\n");
+}
+
+void	ft_lstadd_back_test()
+{
+	t_list	*head;
+	t_list	*tail;
+	t_list	*node1;
+	t_list	*node2;
+	t_list	*node3;
+	t_list	*curr;
+	int		i;
+
+	char	*content1 = "Head Node";
+	char	*content2 = "Middle Node1";
+	char	*content3 = "Middle Node2";
+	char	*content4 = "End Node";
+	char	*content5 = "New End Node";	
+
+	head = ft_lstnew(content1);
+	node1 = ft_lstnew(content2);
+	node2 = ft_lstnew(content3);
+	node3 = ft_lstnew(content4);
+	tail = ft_lstnew(content5);
+	
+	head->next = node1;
+	node1->next = node2;
+	node2->next = node3;
+
+	printf("\n-----ft_lstadd_back test start-----\n");
+	printf("<back add before>\n");
+	curr = head;
+	i = 0;
+	while (curr)
+	{
+		printf("%d node content   : %s\n", i, curr->content);
+		printf("%d node addr      : %p\n", i, curr);
+		printf("%d node next addr : %p\n\n", i, curr->next);
+		i++;
+		curr = curr->next;
+	}
+	printf("<back add after>\n");
+	ft_lstadd_back(&head, tail);
+	curr = head;
+	i = 0;
+	while (curr)
+	{
+		printf("%d node content   : %s\n", i, curr->content);
+		printf("%d node addr      : %p\n", i, curr);
+		printf("%d node next addr : %p\n", i, curr->next);
+		i++;
+		curr = curr->next;
+		if (curr)
+			printf("\n");
+	}
+	printf("-----ft_lstadd_back test end-----\n");
+}
+/*
+void	ft_lstdelone_f_del(void *content)
+{
+	content = 0;
+}
+
+void	ft_lstdelone_test()
+{
+	t_list	*head;
+	t_list	*node1;
+	t_list	*node2;
+	t_list	*node3;
+	t_list	*curr;
+	int		i;
+
+	char	*content1 = "Head Node";
+	char	*content2 = "Middle Node1";
+	char	*content3 = "Middle Node2";
+	char	*content4 = "End Node";
+
+	head = ft_lstnew(content1);
+	node1 = ft_lstnew(content2);
+	node2 = ft_lstnew(content3);
+	node3 = ft_lstnew(content4);
+	
+	head->next = node1;
+	node1->next = node2;
+	node2->next = node3;
+
+	printf("\n-----ft_lstdelone test start-----\n");
+	
+	printf("<delete before>\n");
+	curr = head;
+	i = 0;
+	while (curr)
+	{
+		printf("%d node content   : %s\n", i, curr->content);
+		printf("%d node addr      : %p\n", i, curr);
+		printf("%d node next addr : %p\n\n", i, curr->next);
+		i++;
+		curr = curr->next;
+	}
+
+	printf("<delete after>\n");
+	ft_lstdelone(node2, ft_lstdelone_f_del);
+	curr = head;
+	i = 0;
+	while (curr)
+	{
+		printf("%d node content   : %s\n", i, curr->content);
+		printf("%d node addr      : %p\n", i, curr);
+		printf("%d node next addr : %p\n\n", i, curr->next);
+		i++;
+		curr = curr->next;
+		if (curr)
+			printf("\n");
+	}
+
+	printf("-----ft_lstdelone test end-----\n");	
+}
+*/
+
+void	ft_lstiter_f(void *content)
+{
+	char	*temp;
+	int		i;
+
+	temp = (char *)content;
+	i = 0;
+	while (temp[i] != 0)
+	{
+		temp[i] = temp[i] + 1;
+		i++;
+	}
+}
+
+void	ft_lstiter_test()
+{
+	t_list	*head;
+	t_list	*node1;
+	t_list	*node2;
+	t_list	*node3;
+	t_list	*curr;
+	int		i;
+
+	char	content1[] = "123456789";
+	char	content2[] = "abcdefghijk";
+	char	content3[] = "ABCDEFGHIJK";
+	char	content4[] = "Sdrs";
+
+	head = ft_lstnew(content1);
+	node1 = ft_lstnew(content2);
+	node2 = ft_lstnew(content3);
+	node3 = ft_lstnew(content4);
+	
+	head->next = node1;
+	node1->next = node2;
+	node2->next = node3;
+
+	printf("\n-----ft_lstiter test start-----\n");
+	printf("<iterate apply before>\n");
+	curr = head;
+	i = 0;
+	while (curr)
+	{
+		printf("%d node content   : %s\n", i, curr->content);
+		printf("%d node addr      : %p\n", i, curr);
+		printf("%d node next addr : %p\n\n", i, curr->next);
+		i++;
+		curr = curr->next;
+	}
+	printf("<iterate apply after>\n");
+	ft_lstiter(head, ft_lstiter_f);
+	curr = head;
+	i = 0;
+	while (curr)
+	{
+		printf("%d node content   : %s\n", i, curr->content);
+		printf("%d node addr      : %p\n", i, curr);
+		printf("%d node next addr : %p\n", i, curr->next);
+		i++;
+		curr = curr->next;
+		if (curr)
+			printf("\n");
+	}
+	printf("-----ft_lstiter test end-----\n");
+}
+
 int	main()
 {
 	memset_test();
@@ -684,6 +994,14 @@ int	main()
 	ft_putstr_fd_test();
 	ft_putendl_fd_test();
 	ft_putnbr_fd_test();
-	
+	ft_lstnew_test();
+	ft_lstadd_front_test();
+	ft_lstsize_test();
+	ft_lstlast_test();
+	ft_lstadd_back_test();
+	//ft_lstdelone_test();
+	//ft_lstclear_test();
+	ft_lstiter_test();
+
 	return (0);
 }
