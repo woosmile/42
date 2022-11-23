@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:31:37 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/17 18:13:53 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:35:33 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,11 @@ static int	word_count(char const *s, char c, char **str_arr, size_t str_cnt)
 		{
 			str_arr[i] = (char *)malloc((len + 1) * sizeof(char));
 			if (!str_arr[i])
+			{
+				while (i >= 0)
+					free(str_arr[--i]);
 				return (0);
+			}
 			i++;
 			len = 0;
 		}
@@ -95,7 +99,10 @@ char	**ft_split(char const *s, char c)
 	if (!str_arr)
 		return (0);
 	if (!word_count(s, c, str_arr, str_cnt))
+	{
+		free(str_arr);
 		return (0);
+	}
 	word_input(s, c, str_arr, str_cnt);
 	str_arr[str_cnt] = 0;
 	return (str_arr);

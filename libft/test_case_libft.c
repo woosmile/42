@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:36:09 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/22 18:18:06 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:50:13 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -524,8 +524,8 @@ void	ft_strtrim_test()
 
 void	ft_split_test()
 {
-	char	*str = "\\ lostark overwatch2 leagueoflegends bigjaemi \\";
-	char	c = 0;
+	char	*str = " \\ lostark overwatch2 leagueoflegends bigjaemi \\ ";
+	char	c = ' ';
 	char	**split;
 
 	printf("\n-----ft_split test start-----\n");
@@ -533,7 +533,7 @@ void	ft_split_test()
 	printf("str      : %s\n", str);
 	printf("word     : %c\n\n", c);	
 	split = ft_split(str, c);
-	for(int i = 0; i < 2; i++)
+	for(int i = 0; i < 6; i++)
 		printf("row %d    : %s\n", i, split[i]);
 		
 	printf("-----ft_split test end-----\n");
@@ -699,9 +699,9 @@ void	ft_lstadd_front_test()
 	i = 0;
 	while (curr)
 	{
-		printf("%d node content   : %s\n", i, curr->content);
-		printf("%d node addr      : %p\n", i, curr);
-		printf("%d node next addr : %p\n\n", i, curr->next);
+		printf("node %d content   : %s\n", i, curr->content);
+		printf("node %d addr      : %p\n", i, curr);
+		printf("node %d next addr : %p\n\n", i, curr->next);
 		i++;
 		curr = curr->next;
 	}
@@ -711,9 +711,9 @@ void	ft_lstadd_front_test()
 	i = 0;
 	while (curr)
 	{
-		printf("%d node content   : %s\n", i, curr->content);
-		printf("%d node addr      : %p\n", i, curr);
-		printf("%d node next addr : %p\n", i, curr->next);
+		printf("node %d content   : %s\n", i, curr->content);
+		printf("node %d addr      : %p\n", i, curr);
+		printf("node %d next addr : %p\n", i, curr->next);
 		i++;
 		curr = curr->next;
 		if (curr)
@@ -809,9 +809,9 @@ void	ft_lstadd_back_test()
 	i = 0;
 	while (curr)
 	{
-		printf("%d node content   : %s\n", i, curr->content);
-		printf("%d node addr      : %p\n", i, curr);
-		printf("%d node next addr : %p\n\n", i, curr->next);
+		printf("node %d content   : %s\n", i, curr->content);
+		printf("node %d addr      : %p\n", i, curr);
+		printf("node %d next addr : %p\n\n", i, curr->next);
 		i++;
 		curr = curr->next;
 	}
@@ -821,9 +821,9 @@ void	ft_lstadd_back_test()
 	i = 0;
 	while (curr)
 	{
-		printf("%d node content   : %s\n", i, curr->content);
-		printf("%d node addr      : %p\n", i, curr);
-		printf("%d node next addr : %p\n", i, curr->next);
+		printf("node %d content   : %s\n", i, curr->content);
+		printf("node %d addr      : %p\n", i, curr);
+		printf("node %d next addr : %p\n", i, curr->next);
 		i++;
 		curr = curr->next;
 		if (curr)
@@ -831,10 +831,10 @@ void	ft_lstadd_back_test()
 	}
 	printf("-----ft_lstadd_back test end-----\n");
 }
-/*
-void	ft_lstdelone_f_del(void *content)
+
+void	ft_lst_del(void *content)
 {
-	content = 0;
+	free(content);
 }
 
 void	ft_lstdelone_test()
@@ -846,10 +846,10 @@ void	ft_lstdelone_test()
 	t_list	*curr;
 	int		i;
 
-	char	*content1 = "Head Node";
-	char	*content2 = "Middle Node1";
-	char	*content3 = "Middle Node2";
-	char	*content4 = "End Node";
+	char	*content1 = ft_strdup("Head Node");
+	char	*content2 = ft_strdup("Middle Node1");
+	char	*content3 = ft_strdup("Middle Node2");
+	char	*content4 = ft_strdup("End Node");
 
 	head = ft_lstnew(content1);
 	node1 = ft_lstnew(content2);
@@ -867,31 +867,95 @@ void	ft_lstdelone_test()
 	i = 0;
 	while (curr)
 	{
-		printf("%d node content   : %s\n", i, curr->content);
-		printf("%d node addr      : %p\n", i, curr);
-		printf("%d node next addr : %p\n\n", i, curr->next);
-		i++;
-		curr = curr->next;
-	}
-
-	printf("<delete after>\n");
-	ft_lstdelone(node2, ft_lstdelone_f_del);
-	curr = head;
-	i = 0;
-	while (curr)
-	{
-		printf("%d node content   : %s\n", i, curr->content);
-		printf("%d node addr      : %p\n", i, curr);
-		printf("%d node next addr : %p\n\n", i, curr->next);
+		printf("node %d content   : %s\n", i, curr->content);
+		printf("node %d addr      : %p\n", i, curr);
+		printf("node %d next addr : %p\n", i, curr->next);
 		i++;
 		curr = curr->next;
 		if (curr)
 			printf("\n");
 	}
 
+	printf("\n<delete after>\n");
+	ft_lstdelone(node2, ft_lst_del);
+	printf("node 2 addr      : %p\n\n", node2); 
+	curr = head;
+	i = 0;
+	while (i < 2)
+	{
+		printf("node %d content   : %s\n", i, curr->content);
+		printf("node %d addr      : %p\n", i, curr);
+		printf("node %d next addr : %p\n", i, curr->next);
+		i++;
+		curr = curr->next;
+		if (i != 2)
+			printf("\n");
+	}
+	/*
+	while (curr)	//fsanitize=address 옵션으로 컴파일 시 memory 참조 오류 확인할 수 있음
+	{
+		printf("node %d content   : %s\n", i, curr->content);
+		printf("node %d addr      : %p\n", i, curr);
+		printf("node %d next addr : %p\n", i, curr->next);
+		i++;
+		curr = curr->next;
+		if (curr != 0)
+			printf("\n");
+	}
+	*/
+
 	printf("-----ft_lstdelone test end-----\n");	
 }
-*/
+
+void	ft_lstclear_test()
+{
+	t_list	*head;
+	t_list	*node1;
+	t_list	*node2;
+	t_list	*node3;
+	t_list	*curr;
+	int		i;
+
+	char	*content1 = ft_strdup("Head Node");
+	char	*content2 = ft_strdup("Middle Node1");
+	char	*content3 = ft_strdup("Middle Node2");
+	char	*content4 = ft_strdup("End Node");
+
+	head = ft_lstnew(content1);
+	node1 = ft_lstnew(content2);
+	node2 = ft_lstnew(content3);
+	node3 = ft_lstnew(content4);
+	
+	head->next = node1;
+	node1->next = node2;
+	node2->next = node3;
+
+	printf("\n-----ft_lstclear test start-----\n");
+	
+	printf("<clear before>\n");
+	curr = head;
+	i = 0;
+	while (curr)
+	{
+		printf("node %d content   : %s\n", i, curr->content);
+		printf("node %d addr      : %p\n", i, curr);
+		printf("node %d next addr : %p\n", i, curr->next);
+		i++;
+		curr = curr->next;
+		if (curr)
+			printf("\n");
+	}
+
+	printf("\n<clear after>\n");
+	ft_lstclear(&node1, ft_lst_del);
+	printf("node 1 addr      : %p\n\n", node1);
+	curr = head;
+	printf("node 0 content   : %s\n", curr->content);
+	printf("node 0 addr      : %p\n", curr);
+	printf("node 0 next addr : %p\n", curr->next);
+	
+	printf("-----ft_lstclear test end-----\n");	
+}
 
 void	ft_lstiter_f(void *content)
 {
@@ -936,9 +1000,9 @@ void	ft_lstiter_test()
 	i = 0;
 	while (curr)
 	{
-		printf("%d node content   : %s\n", i, curr->content);
-		printf("%d node addr      : %p\n", i, curr);
-		printf("%d node next addr : %p\n\n", i, curr->next);
+		printf("node %d content   : %s\n", i, curr->content);
+		printf("node %d addr      : %p\n", i, curr);
+		printf("node %d next addr : %p\n\n", i, curr->next);
 		i++;
 		curr = curr->next;
 	}
@@ -948,15 +1012,83 @@ void	ft_lstiter_test()
 	i = 0;
 	while (curr)
 	{
-		printf("%d node content   : %s\n", i, curr->content);
-		printf("%d node addr      : %p\n", i, curr);
-		printf("%d node next addr : %p\n", i, curr->next);
+		printf("node %d content   : %s\n", i, curr->content);
+		printf("node %d addr      : %p\n", i, curr);
+		printf("node %d next addr : %p\n", i, curr->next);
 		i++;
 		curr = curr->next;
 		if (curr)
 			printf("\n");
 	}
 	printf("-----ft_lstiter test end-----\n");
+}
+
+void	*ft_lstmap_f(void *content)
+{
+	char	*temp;
+	int		i;
+
+	temp = ft_strdup((char *)content);
+	i = 0;
+	while (temp[i] != 0)
+	{
+		temp[i] = temp[i] + 1;
+		i++;
+	}
+	return (temp);
+}
+
+void	ft_lstmap_test()
+{
+	t_list	*new_list;
+	t_list	*head;
+	t_list	*node1;
+	t_list	*node2;
+	t_list	*node3;
+	t_list	*curr;
+	int		i;
+
+	char	content1[] = "123456789";
+	char	content2[] = "abcdefghijk";
+	char	content3[] = "ABCDEFGHIJK";
+	char	content4[] = "Sdrs";
+
+	head = ft_lstnew(content1);
+	node1 = ft_lstnew(content2);
+	node2 = ft_lstnew(content3);
+	node3 = ft_lstnew(content4);
+	
+	head->next = node1;
+	node1->next = node2;
+	node2->next = node3;
+
+	printf("\n-----ft_lstmap test start-----\n");
+	printf("<original list>\n");
+	curr = head;
+	i = 0;
+	while (curr)
+	{
+		printf("node %d content   : %s\n", i, curr->content);
+		printf("node %d addr      : %p\n", i, curr);
+		printf("node %d next addr : %p\n\n", i, curr->next);
+		i++;
+		curr = curr->next;
+	}
+	printf("<new list>\n");
+	new_list = ft_lstmap(head, ft_lstmap_f, ft_lst_del);
+	curr = new_list;
+	i = 0;
+	while (curr)
+	{
+		printf("node %d content   : %s\n", i, curr->content);
+		printf("node %d addr      : %p\n", i, curr);
+		printf("node %d next addr : %p\n", i, curr->next);
+		i++;
+		curr = curr->next;
+		if (curr)
+			printf("\n");
+	}
+	printf("-----ft_lstmap test end-----\n");
 }
 
 int	main()
@@ -999,9 +1131,10 @@ int	main()
 	ft_lstsize_test();
 	ft_lstlast_test();
 	ft_lstadd_back_test();
-	//ft_lstdelone_test();
-	//ft_lstclear_test();
+	ft_lstdelone_test();
+	ft_lstclear_test();
 	ft_lstiter_test();
+	ft_lstmap_test();
 
 	return (0);
 }

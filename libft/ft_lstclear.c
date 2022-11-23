@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:39:18 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/22 17:56:25 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:13:18 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	{
 		while (curr != 0)
 		{
-			del(curr->content);
 			next = curr->next;
-			free(curr);
+			ft_lstdelone(curr, del);
 			curr = next;
 		}
 		*lst = 0;
