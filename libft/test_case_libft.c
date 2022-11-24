@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:36:09 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/23 17:50:13 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/24 10:41:34 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -892,13 +892,13 @@ void	ft_lstdelone_test()
 			printf("\n");
 	}
 	/*
-	while (curr)	//fsanitize=address 옵션으로 컴파일 시 memory 참조 오류 확인할 수 있음
+	while (curr)	//fsanitize=address 옵션으로 컴파일 시 memory 참조 오류 발생
 	{
 		printf("node %d content   : %s\n", i, curr->content);
 		printf("node %d addr      : %p\n", i, curr);
 		printf("node %d next addr : %p\n", i, curr->next);
 		i++;
-		curr = curr->next;
+		curr = curr->next생
 		if (curr != 0)
 			printf("\n");
 	}
