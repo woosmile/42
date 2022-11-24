@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 17:39:44 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/24 17:43:00 by woosekim         ###   ########.fr       */
+/*   Created: 2022/11/24 15:48:00 by woosekim          #+#    #+#             */
+/*   Updated: 2022/11/24 16:08:14 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_list	*curr;
+	size_t			i;
+	unsigned char	s1_temp;
+	unsigned char	s2_temp;
 
-	curr = *lst;
-	if (curr != 0 && new != 0)
+	i = 0;
+	while (*s1 != 0 && *s2 != 0 && i < n)
 	{
-		while (curr->next != 0)
-			curr = curr->next;
-		curr->next = new;
-		new->next = 0;
+		s1_temp = *s1;
+		s2_temp = *s2;
+		if (s1_temp != s2_temp)
+			return (s1_temp - s2_temp);
+		s1++;
+		s2++;
+		i++;
 	}
+	s1_temp = *s1;
+	s2_temp = *s2;
+	return (s1_temp - s2_temp);
 }

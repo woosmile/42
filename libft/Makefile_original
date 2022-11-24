@@ -13,24 +13,28 @@ ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c
 MANDATORY_OBJS = $(MANDATORY_SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
+ifdef WITH_BONUS
+	FINAL_OBJS = $(MANDATORY_OBJS) $(BONUS_OBJS)
+else
+	FINAL_OBJS = $(MANDATORY_OBJS)
+endif
+
 all : $(NAME)
-bonus : make_bonus
 
-make_bonus : $(NAME) $(BONUS_OBJS)
-	ar rcs $(NAME) $^
-	touch $@
+bonus : 
+	make WITH_BONUS=1 all
 
-$(NAME) : $(MANDATORY_OBJS)
+$(NAME) : $(FINAL_OBJS)
 	ar rcs $@ $^
+
 $(MANDATORY_OBJS) :
 	$(CC) $(CFLAGS) -c $(MANDATORY_SRCS)
-$(BONUS_OBJS) : 
+$(BONUS_OBJS) :
 	$(CC) $(CFLAGS) -c $(BONUS_SRCS)
 
 clean :
 	rm -rf $(MANDATORY_OBJS)
 	rm -rf $(BONUS_OBJS)
-	rm -rf make_bonus
 fclean : clean
 	rm -rf $(NAME)
 re : fclean all

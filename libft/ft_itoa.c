@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 18:14:03 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/18 16:02:22 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:47:50 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ char	*ft_itoa(int n)
 {
 	int		len;
 	char	*str_num;
-	int		i;
 
 	len = check_len(n);
 	str_num = (char *)malloc((len + 1) * sizeof(char));

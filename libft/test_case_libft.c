@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:36:09 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/24 10:41:34 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:40:37 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -377,6 +377,19 @@ void	strlcpy_test()
 	printf("ft_strlcpy       : %lu, %s\n", ft_strlcpy(str2, str3, 50), str2);
 	
 	printf("-----strlcpy test end-----\n");
+}
+
+void	strncmp_test()
+{
+	char	*str1 = "";
+	char	*str2 = "";
+
+	printf("\n-----strncmp test start-----\n");
+
+	printf("original strncmp : %d\n", strncmp(str1, str2, 7));
+	printf("ft_strncmp       : %d\n", ft_strncmp(str1, str2, 7));
+
+	printf("-----strncmp test end-----\n");	
 }
 
 void	strlcat_test()
@@ -1113,6 +1126,7 @@ int	main()
 	atoi_test();
 	strlcpy_test();
 	strlcat_test();
+	strncmp_test();
 	strdup_test();
 	calloc_test();
 	ft_substr_test();
