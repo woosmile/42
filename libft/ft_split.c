@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:31:37 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/23 17:35:33 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:09:02 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static size_t	string_count(char const *s, char c)
 
 static int	word_count(char const *s, char c, char **str_arr, size_t str_cnt)
 {
-	size_t	i;
-	size_t	len;
+	size_t		i;
+	size_t		len;
 
 	i = 0;
 	len = 0;
@@ -53,7 +53,7 @@ static int	word_count(char const *s, char c, char **str_arr, size_t str_cnt)
 			str_arr[i] = (char *)malloc((len + 1) * sizeof(char));
 			if (!str_arr[i])
 			{
-				while (i >= 0)
+				while (i > 0)
 					free(str_arr[--i]);
 				return (0);
 			}

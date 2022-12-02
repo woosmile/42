@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:36:09 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/24 17:40:37 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:15:56 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <strings.h>
+#include <limits.h>
 
 void	memset_test()
 {
@@ -22,8 +23,8 @@ void	memset_test()
 	int	array1[10];
 	int	array2[10];
 
-	memset(array1, 0, sizeof(array1));
-	ft_memset(array2, 0, sizeof(array2));
+	memset(array1, -1, 40);
+	ft_memset(array2, -1, 40);
 
 	printf("\n-----memset test start-----\n");
 
@@ -105,9 +106,7 @@ void	memcpy_test()
 	char	str1[] = "abcdefghijklmn";
 	char	str2[] = "abcdefghijklmn";
 	char	str3[] = "12345";
-	int		arr1[10];
-	int		arr2[10];
-
+	
 	printf("-----memcpy test start-----\n");
 	
 	printf("original memcpy\n");
@@ -125,16 +124,17 @@ void	memcpy_test()
 
 void	memmove_test()
 {
-	char	str1[] = "abcdefghijklmn";
+	char	str1[] = "123456";
+	char	str2[100];
 	int		arr1[10];
 	int		arr2[10];
 
 	printf("\n-----memmove test start-----\n");
 
 	printf("before : %s\n", str1);	//string test
-	ft_memmove(str1, str1 + 4, 3);
-	//memmove(str1, str1 + 4, 3);
-	printf("after : %s\n", str1);
+	ft_memmove(str1 + 2, str1 + 3, 4);
+	//memmove(str1 + 2, str1 + 3, 4);
+	printf("after  : %s\n", str1);
 
 	printf("\nbefore : ");	//integer test
 	for (int i = 0; i < 10; i++)
@@ -143,9 +143,9 @@ void	memmove_test()
 		arr2[i] = -667;
 		printf("%d ", arr1[i]);
 	}
-	printf("\nafter : ");
-	//ft_memmove(arr1, arr2, 2);
-	memmove(arr1, arr2, 2);
+	printf("\nafter  : ");
+	ft_memmove(arr1, arr2, 8);
+	//memmove(arr1, arr2, 8);
 	for (int i = 0; i < 10; i++)
 		printf("%d ", arr1[i]);
 		
@@ -154,12 +154,13 @@ void	memmove_test()
 
 void	strchr_test()
 {
-	char *str = "welcome to woosekim evaluation!!@";
+	char *str = "taetetetetetetetetete";
+	char c = 'e';
 
 	printf("\n-----strchr test start-----\n");
 
-	printf("original strchr : %s\n", strchr(str, 'w'));
-	printf("ft_strchr       : %s\n", ft_strchr(str, 'w'));
+	printf("original strchr : %s\n", strchr(str, c));
+	printf("ft_strchr       : %s\n", ft_strchr(str, c));
 
 	printf("-----strchr test end-----\n");
 }
@@ -167,11 +168,12 @@ void	strchr_test()
 void	strrchr_test()
 {
 	char *str = "have a nice day!";
+	char c = 'a';
 
 	printf("\n-----strrchr test start-----\n");
 
-	printf("original strrchr : %s\n", strrchr(str, 0));
-	printf("ft_strrchr       : %s\n", ft_strrchr(str, 0));
+	printf("original strrchr : %s\n", strrchr(str, c));
+	printf("ft_strrchr       : %s\n", ft_strrchr(str, c));
 
 	printf("-----strrchr test end-----\n");
 }
@@ -203,13 +205,14 @@ void	memcmp_test()
 
 void	strnstr_test()
 {
-	char	*str = "can you find this strings?";
-	char	*to_find = "c";
+	char	*str = "aaabcabcd";
+	char	*to_find = "aabc";
+	size_t	len = -1;
 
 	printf("\n-----strnstr test start-----\n");
 
-	printf("original strnstr : %s\n", strnstr(str, to_find, 1));
-	printf("ft_strnstr       : %s\n", ft_strnstr(str, to_find, 1));
+	printf("original strnstr : %s\n", strnstr(str, to_find, len));
+	printf("ft_strnstr       : %s\n", ft_strnstr(str, to_find, len));
 	
 	printf("-----strnstr test end-----\n");
 }
@@ -355,12 +358,16 @@ void	tolower_test()
 
 void	atoi_test()
 {
-	char	str[] = "1112144414424124124124";
+	char	str1[] = "15465465456468";
+	char	str2[] = "-1512512512512";
 
 	printf("\n-----atoi test start-----\n");
 
-	printf("original atoi : %d\n", atoi(str));
-	printf("ft_atoi       : %d\n", ft_atoi(str));
+	printf("original atoi : %d\n", atoi(str1));
+	printf("ft_atoi       : %d\n\n", ft_atoi(str1));
+
+	printf("original atoi : %d\n", atoi(str2));
+	printf("ft_atoi       : %d\n", ft_atoi(str2));
 
 	printf("-----atoi test end-----\n");
 }
@@ -369,25 +376,26 @@ void	strlcpy_test()
 {
 	char	str1[100];
 	char	str2[100];
-	char	*str3 = "strlcpy strlcpy strlcpy test test test";
+	char	*str3 = "abcdefghijklmn";
 	
 	printf("\n-----strlcpy test start-----\n");
 
-	printf("original strlcpy : %lu, %s\n", strlcpy(str1, str3, 50), str1);
-	printf("ft_strlcpy       : %lu, %s\n", ft_strlcpy(str2, str3, 50), str2);
+	printf("original strlcpy : %lu, %s\n", strlcpy(str1, str3, 5), str1);
+	printf("ft_strlcpy       : %lu, %s\n", ft_strlcpy(str2, str3, 5), str2);
 	
 	printf("-----strlcpy test end-----\n");
 }
 
 void	strncmp_test()
 {
-	char	*str1 = "";
-	char	*str2 = "";
+	char	*str1 = "abcd";
+	char	*str2 = "abcd";
+	size_t	i = 3;
 
 	printf("\n-----strncmp test start-----\n");
 
-	printf("original strncmp : %d\n", strncmp(str1, str2, 7));
-	printf("ft_strncmp       : %d\n", ft_strncmp(str1, str2, 7));
+	printf("original strncmp : %d\n", strncmp(str1, str2, i));
+	printf("ft_strncmp       : %d\n", ft_strncmp(str1, str2, i));
 
 	printf("-----strncmp test end-----\n");	
 }
@@ -430,10 +438,9 @@ void	calloc_test()
 {
 	char	*p1;
 	char	*p2;
-	int		count = 10;
+	size_t	count = 10;
 
 	printf("\n-----calloc test start-----\n");
-
 	printf("original calloc\n");
 	p1 = (char *)calloc(count, sizeof(char));
 	for(int	i = 0; i < count; i++)
@@ -444,7 +451,6 @@ void	calloc_test()
 	}
 
 	printf("\n\noriginal calloc input value\n");
-	p1 = (char *)calloc(count, sizeof(char));
 	for(int	i = 0; i < count; i++)
 	{
 		p1[i] = 127;
@@ -463,7 +469,6 @@ void	calloc_test()
 	}
 
 	printf("\n\nft_calloc input value\n");
-	p2 = (char *)ft_calloc(count, sizeof(char));
 	for(int	i = 0; i < count; i++)
 	{
 		p2[i] = 127;
@@ -480,15 +485,14 @@ void	calloc_test()
 
 void	ft_substr_test()
 {
-	char			*str = "abc@dfad@fdga@010204";
-	unsigned int	start = '@';
+	char			str[] = "hola";
+	unsigned int	start = 1;
 	char			*substr;
-	size_t			len = 100000;
+	size_t			len = 1;
 
 	printf("\n-----ft_substr test start-----\n");
 
 	printf("original str : %s\n", str);
-	printf("start        : %c\n", start);
 
 	substr = ft_substr(str, start, len);
 	printf("substr       : %s\n", substr);
@@ -602,7 +606,7 @@ void	ft_strmapi_test()
 
 void	f_ft_striteri(unsigned int i, char *str)
 {
-	str[i] = ft_tolower(str[i]);
+	*str = ft_tolower(*str);
 }
 
 void	ft_striteri_test()

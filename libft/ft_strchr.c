@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:38:32 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/14 18:36:08 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:45:26 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,19 @@ char	*ft_strchr(const char *s, int c)
 {
 	char	*s_temp;
 	char	c_temp;
+	size_t	i;
 
 	s_temp = (char *)s;
 	c_temp = c;
-	if (c_temp == 0)
+	i = 0;
+	while (s_temp[i] != 0)
 	{
-		while (*s_temp != 0)
-			s_temp++;
-		return (s_temp);
+		if (s_temp[i] == c_temp)
+			return (s_temp + i);
+		i++;
 	}
-	while (*s_temp != 0)
-	{
-		if (*s_temp == c)
-			return (s_temp);
-		s_temp++;
-	}
-	return (0);
+	if (s_temp[i] == c_temp)
+		return (s_temp + i);
+	else
+		return (0);
 }

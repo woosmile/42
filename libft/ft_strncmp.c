@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:48:00 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/24 16:08:14 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:26:19 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	unsigned char	s2_temp;
 
 	i = 0;
-	while (*s1 != 0 && *s2 != 0 && i < n)
+	while ((*s1 != 0 || *s2 != 0) && i < n)
 	{
 		s1_temp = *s1;
 		s2_temp = *s2;
@@ -29,7 +29,5 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		s2++;
 		i++;
 	}
-	s1_temp = *s1;
-	s2_temp = *s2;
-	return (s1_temp - s2_temp);
+	return (0);
 }

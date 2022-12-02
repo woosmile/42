@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:37:17 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/17 11:49:01 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:10:32 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int	ft_isprint(int c)
 {
-	unsigned char	c_temp;
-
-	c_temp = c;
-	if (c_temp >= 32 && c_temp <= 126)
+	if (c >= 32 && c <= 126)
 		return (1);
 	else
 		return (0);

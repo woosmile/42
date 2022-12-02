@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:55:14 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/24 16:24:55 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:09:27 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int	ft_isdigit(int c)
 {
-	unsigned char	c_temp;
-
-	c_temp = c;
-	if (c_temp >= '0' && c_temp <= '9')
+	if (c >= '0' && c <= '9')
 		return (1);
 	else
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:21:03 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/24 16:24:26 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:08:54 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 int	ft_isalpha(int c)
 {
-	unsigned char	c_temp;
-
-	c_temp = c;
-	if ((c_temp >= 'A' && c_temp <= 'Z') || \
-		(c_temp >= 'a' && c_temp <= 'z'))
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		return (1);
 	else
 		return (0);

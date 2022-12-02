@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:23:56 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/18 15:14:15 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:17:09 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	len = ft_strlen(s);
 	str = (char *)malloc((len + 1) * sizeof(char));
+	if (!str)
+		return (0);
 	i = 0;
 	while (s[i] != 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 18:06:07 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/17 11:47:58 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:32:30 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_calloc(size_t count, size_t size)
 	if (!arr)
 		return (0);
 	i = 0;
-	while (i < count)
+	while (i < count * size)
 	{
 		arr[i] = 0;
 		i++;

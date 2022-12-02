@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:10:18 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/17 11:48:06 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:10:11 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 int	ft_isalnum(int c)
 {
-	unsigned char	c_temp;
-
-	c_temp = c;
-	if ((c_temp >= 'A' && 'Z' >= c_temp) || \
-		(c_temp >= 'a' && c_temp <= 'z') || \
-		(c_temp >= '0' && c_temp <= '9'))
+	if ((c >= 'A' && c <= 'Z') || \
+		(c >= 'a' && c <= 'z') || \
+		(c >= '0' && c <= '9'))
 		return (1);
 	else
 		return (0);

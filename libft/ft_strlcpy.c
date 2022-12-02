@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:58:55 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/17 12:54:32 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:07:09 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	src_len = 0;
 	while (src[src_len] != 0)
 		src_len++;
-	while ((src[i] != 0) && (i + 1 < dstsize))
+	if (dstsize > 0)
 	{
-		dst[i] = src[i];
-		i++;
+		while ((src[i] != 0) && (i + 1 < dstsize))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = 0;
 	}
-	dst[i] = 0;
 	return (src_len);
 }
