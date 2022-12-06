@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:44:13 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/14 18:36:49 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:23:37 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	const unsigned char		*cuc_s;
+	const unsigned char		*cuc_s = s;
 	unsigned char			uc_c;
 	size_t					i;
 
-	cuc_s = s;
 	uc_c = c;
 	i = 0;
 	while (i < n)

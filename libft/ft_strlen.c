@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:41:29 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/17 12:54:07 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:28:25 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *s)
 {
-	unsigned long	len;
+	size_t	len;
 
 	len = 0;
 	while (s[len] != 0)

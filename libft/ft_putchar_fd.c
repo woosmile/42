@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:31:19 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/18 16:04:35 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:24:04 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
+	if (fd == -1)
+		return ;
 	write(fd, &c, 1);
 }

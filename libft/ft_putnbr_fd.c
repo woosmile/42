@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:35:52 by woosekim          #+#    #+#             */
-/*   Updated: 2022/11/18 16:23:03 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:24:30 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	ft_putnbr_fd(int n, int fd)
 	size_t	i;
 	char	num_arr[11];
 
+	if (fd == -1)
+		return ;
 	len = check_len(n);
 	i = 0;
 	while (i < 11)
