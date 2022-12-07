@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   print_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 18:02:11 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/07 17:58:51 by woosekim         ###   ########.fr       */
+/*   Created: 2022/11/18 15:32:22 by woosekim          #+#    #+#             */
+/*   Updated: 2022/12/07 17:59:01 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "./libft/libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
-# include "./libft/libft.h"
+void	print_str(char *s, int *len)
+{
+	int	s_len;
 
-int		ft_printf(const char *s, ...);
-void	print_str(char *s, int *len);
-void	print_addr(void *addr, int *len);
-
-#endif
+	s_len = 0;
+	s_len = ft_strlen(s);
+	write (1, s, s_len);
+	*len = *len + s_len;
+}

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 18:02:11 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/07 17:58:51 by woosekim         ###   ########.fr       */
+/*   Created: 2022/11/15 16:41:29 by woosekim          #+#    #+#             */
+/*   Updated: 2022/12/07 18:03:10 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
-# include "./libft/libft.h"
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
 
-int		ft_printf(const char *s, ...);
-void	print_str(char *s, int *len);
-void	print_addr(void *addr, int *len);
-
-#endif
+	len = 0;
+	while (s[len] != 0)
+		len++;
+	return (len);
+}
