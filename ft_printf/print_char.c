@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 16:16:18 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/08 15:50:02 by woosekim         ###   ########.fr       */
+/*   Created: 2022/12/08 15:51:29 by woosekim          #+#    #+#             */
+/*   Updated: 2022/12/08 16:29:07 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-
-size_t	ft_strlen(const char *s);
-
-#endif
+void	print_char(char c, int *len)
+{
+	if (write (1, &c, 1) == -1)
+		return ;
+	(*len)++;
+}

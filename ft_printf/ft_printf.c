@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:55:22 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/07 18:03:28 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:01:07 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 
 void	print_distributor(char c, va_list ap, int *len)
 {
-	int	temp;
-
 	if (c == 'c')
-	{
-		temp = va_arg(ap, int);
-		write(1, &temp, 1);
-		(*len)++;
-	}
+		print_char(va_arg(ap, int), len);
 	else if (c == 's')
 		print_str(va_arg(ap, char *), len);
 	else if (c == 'p')
 		print_addr(va_arg(ap, void *), len);
+	else if (c == 'd' || c == 'i')
+		print_nbr(va_arg(ap, int), len);
+	else if (c == 'u')
+		print_nbr_u(va_arg(ap, unsigned int), len);
+	else if (c == 'x' || c == 'X')
+		print_hex (va_arg(ap, int), len, c);
+	else if (c == '%')
+	{
+		write(1, "%%", 1);
+		(*len)++;
+	}
 }
 
 int	ft_printf(const char *s, ...)
@@ -44,7 +49,8 @@ int	ft_printf(const char *s, ...)
 		}
 		else
 		{
-			write(1, s, 1);
+			if (write(1, s, 1) == -1)
+				return (0);
 			len++;
 			s++;
 		}
