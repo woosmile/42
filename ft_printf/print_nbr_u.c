@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:04:19 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/08 16:29:09 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/09 10:21:52 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,23 @@ void	input_number_u(unsigned int n, int n_len, char *num_arr)
 	}
 }
 
-void	print_nbr_u(unsigned int n, int *len)
+int	print_nbr_u(unsigned int n, int *len)
 {
 	int		n_len;
 	int		i;
 	char	num_arr[10];
+	int		result;
 
 	n_len = check_len_u(n);
 	i = 0;
+	result = 0;
 	while (i < 10)
 	{
 		num_arr[i] = 0;
 		i++;
 	}
 	input_number_u(n, n_len, num_arr);
-	if (write (1, num_arr, n_len) == -1)
-		return ;
+	result = write(1, num_arr, n_len);
 	*len = *len + n_len;
+	return (result);
 }

@@ -6,15 +6,18 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:51:29 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/08 16:29:07 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/09 09:39:32 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_char(char c, int *len)
+int	print_char(char c, int *len)
 {
-	if (write (1, &c, 1) == -1)
-		return ;
+	int	result;
+
+	result = 0;
+	result = write (1, &c, 1);
 	(*len)++;
+	return (result);
 }

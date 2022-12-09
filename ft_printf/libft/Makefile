@@ -1,4 +1,4 @@
-CC = gcc
+CC = cc
 CFLAGS = -Werror -Wall -Wextra
 NAME = libft.a
 MANDATORY_SRCS = ft_strlen.c
