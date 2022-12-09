@@ -19,8 +19,10 @@ $(MANDATORY_OBJS) :
 
 clean :
 	rm -rf $(MANDATORY_OBJS)
+	make -C $(LIBFT) clean
 fclean : clean
 	rm -rf $(NAME)
+	make -C $(LIBFT) fclean
 re : fclean all
 
 .PHONY : all clean fclean re

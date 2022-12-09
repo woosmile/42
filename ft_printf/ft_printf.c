@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:55:22 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/09 09:57:06 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:14:08 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	print_distributor(char c, va_list ap, int *len)
 	else if (c == 'u')
 		result = print_nbr_u(va_arg(ap, unsigned int), len);
 	else if (c == 'x' || c == 'X')
-		result = print_hex (va_arg(ap, int), len, c);
+		result = print_hex(va_arg(ap, unsigned int), len, c);
 	else if (c == '%')
 	{
 		result = write(1, "%%", 1);

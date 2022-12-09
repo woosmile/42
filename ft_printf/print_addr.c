@@ -6,13 +6,13 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:17:26 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/09 10:17:48 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:42:15 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	check_addr_len(unsigned long addr_temp)
+int	check_addr_len(unsigned long long addr_temp)
 {
 	int	len;
 
@@ -44,14 +44,14 @@ void	input_addr_value(unsigned long addr_temp, char *arr, int addr_len)
 
 int	print_addr(void *addr, int *len)
 {
-	int				result;
-	int				addr_len;
-	char			*arr;
-	unsigned long	addr_temp;
+	int					result;
+	int					addr_len;
+	char				*arr;
+	unsigned long long	addr_temp;
 
 	result = 0;
 	addr_len = 0;
-	addr_temp = (unsigned long)addr;
+	addr_temp = (unsigned long long)addr;
 	if (addr_temp == 0)
 	{
 		result = write(1, "0x0", 3);
