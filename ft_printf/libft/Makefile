@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Werror -Wall -Wextra
 NAME = libft.a
-MANDATORY_SRCS = ft_strlen.c
+MANDATORY_SRCS = ft_strlen.c ft_atoi.c
 MANDATORY_OBJS = $(MANDATORY_SRCS:.c=.o)
 
 all : $(NAME)

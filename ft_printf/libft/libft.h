@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:16:18 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/08 15:50:02 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:03:18 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 # include <unistd.h>
 
 size_t	ft_strlen(const char *s);
+int		ft_atoi(const char *str);
 
 #endif

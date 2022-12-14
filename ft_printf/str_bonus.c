@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   str_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 16:41:29 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/13 17:03:05 by woosekim         ###   ########.fr       */
+/*   Created: 2022/11/18 15:32:22 by woosekim          #+#    #+#             */
+/*   Updated: 2022/12/14 17:22:03 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf_bonus.h"
 
-size_t	ft_strlen(const char *s)
+int	print_str(char *s, int *len)
 {
-	size_t	len;
+	size_t	s_len;
+	int		result;
 
-	len = 0;
-	while (s[len] != 0)
-		len++;
-	return (len);
+	s_len = 0;
+	result = 0;
+	if (!s)
+	{
+		result = write(1, "(null)", 6);
+		*len = *len + 6;
+	}
+	else
+	{
+		s_len = ft_strlen(s);
+		result = write(1, s, s_len);
+		*len = *len + s_len;
+	}
+	return (result);
 }
