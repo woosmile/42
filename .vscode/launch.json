@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+      {
+        // debug작업 이름
+        "name": "debug ft_printf",
+        // debug type
+        "type": "cppdbg",
+        // debug request
+        "request": "launch",
+        // launch 하는 대상 프로그램
+        "program": "${fileDirname}/${fileBasenameNoExtension}",
+        // 실행하는 프로그램에 대해 인자가 필요한 경우 아래에 추가
+        "args": [],
+        // debug가 시작후 main 시작 부분에서 멈추게 하는지에 대한 여부
+        "stopAtEntry": false,
+        // 작업 경로
+        "cwd": "${workspaceFolder}",
+        // 환경 변수 설정
+        "environment": [],
+        // vscode의 terminal이 아닌 외부의 terminal에서 실행을 할지에 대한 설정
+        "externalConsole": false,
+        // debugger 종류
+        "MIMode": "gdb",
+        "miDebuggerPath": "/usr/bin/gdb",
+        // launch하기전 build나 선 수행 되야 하는 task 설정
+        // task.json에서 정의된 label 이름을 설정
+        "preLaunchTask": "C/C++: gcc build active file"
+      }
+    ]
+  }
