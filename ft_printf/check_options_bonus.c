@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:47:32 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/14 19:09:43 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:17:55 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	initial_options(t_options *options)
 {
 	options->width = 0;
 	options->prec = 0;
+	options->prec_flag = 0;
 	options->minus = 0;
 	options->zero = 0;
 	options->hash = 0;
@@ -53,12 +54,19 @@ char	*check_width(char *s, t_options *options)
 
 char	*check_prec(char *s, t_options *options)
 {
-	s++;
-	if (*s >= '0' && *s <= '9')
-		options->prec = ft_atoi(s);
-	while (*s != 0 && (*s != 'c' && *s != 's' && *s != 'p' && *s != 'i' && \
-	*s != 'u' && *s != 'd' && *s != 'x' && *s != 'X'))
-		s++;
+	if (*s != 0)
+	{
+		if (*s == '.')
+		{
+			options->prec_flag = 1;
+			s++;
+		}
+		if (*s >= '0' && *s <= '9')
+			options->prec = ft_atoi(s);
+		while (*s != 0 && (*s != 'c' && *s != 's' && *s != 'p' && *s != 'i' && \
+		*s != 'u' && *s != 'd' && *s != 'x' && *s != 'X'))
+			s++;
+	}
 	return (s);
 }
 

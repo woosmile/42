@@ -6,29 +6,71 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:32:22 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/14 17:22:03 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:22:39 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	print_str(char *s, int *len)
+int	str_length(char *s, t_options options)
 {
-	size_t	s_len;
-	int		result;
+	int	s_len;
+	int	len;
 
-	s_len = 0;
-	result = 0;
-	if (!s)
+	s_len = ft_strlen(s);
+	len = 0;
+	if (options.prec_flag == 1)
 	{
-		result = write(1, "(null)", 6);
-		*len = *len + 6;
+		if (options.width > 0)
+			len = options.width;
+		else
+			len = options.prec;
 	}
 	else
 	{
-		s_len = ft_strlen(s);
-		result = write(1, s, s_len);
-		*len = *len + s_len;
+		if (options.width > s_len)
+			len = options.width;
+		else
+			len = s_len;
 	}
-	return (result);
+	return (len);
+}
+
+char	*str_input(char *s, char *str, t_options *options)
+{
+	int	s_idx;
+	int	s_len;
+	int	str_idx;
+	int	str_len;
+
+	s_idx = 0;
+	s_len = ft_strlen(s);
+	str_idx = 0;
+	str_len = str_length(s, *options);
+	if (options->prec > s_len)
+		options->prec = s_len;
+	if (options->minus == 0)
+	{
+		if (options->prec_flag == 1)
+		{
+			while (str_idx < str_len)
+			{
+				if (str_idx < str_len - options->prec)
+					str[str_idx++] = ' ';
+				else
+					str[str_idx++] = s[s_idx++];
+			}
+		}
+		else
+		{
+			while (str_idx < str_len)
+			{
+				if (str_idx < str_len - s_len)
+					str[str_idx++] = ' ';
+				else
+					str[str_idx++] = s[s_idx++];
+			}
+		}
+	}
+	return (str + str_idx);
 }

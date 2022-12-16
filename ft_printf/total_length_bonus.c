@@ -6,13 +6,13 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:16:54 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/14 17:55:56 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:22:00 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-char	*variable_arg_length(char *s, va_list ap, t_options *options, int *len)
+char	*variable_arg_length(char *s, va_list ap, t_options options, int *len)
 {
 	int	va_len;
 
@@ -21,9 +21,9 @@ char	*variable_arg_length(char *s, va_list ap, t_options *options, int *len)
 	{
 		if (*s == 'c')
 			va_len = char_length(va_arg(ap, int), options);
-		/*
 		else if (*s == 's')
 			va_len = str_length(va_arg(ap, char *), options);
+		/*
 		else if (*s == 'p')
 			va_len = addr_length(va_arg(ap, void *), options);
 		else if (*s == 'd' || *s == 'i' || *s == 'u')
@@ -51,7 +51,7 @@ int	total_length(char *s, va_list ap, t_options *options)
 		if (*s == '%')
 		{
 			check_options(s, options);
-			s = variable_arg_length(s, ap, options, &len);
+			s = variable_arg_length(s, ap, *options, &len);
 		}
 		else
 		{
