@@ -24,8 +24,8 @@
         // vscode의 terminal이 아닌 외부의 terminal에서 실행을 할지에 대한 설정
         "externalConsole": false,
         // debugger 종류
-        "MIMode": "gdb",
-        "miDebuggerPath": "/usr/bin/gdb",
+        "MIMode": "lldb",
+        //"miDebuggerPath": "/usr/bin/lldb",
         // launch하기전 build나 선 수행 되야 하는 task 설정
         // task.json에서 정의된 label 이름을 설정
         "preLaunchTask": "C/C++: gcc build active file"
