@@ -36,41 +36,48 @@ int	str_length(char *s, t_options options)
 	return (len);
 }
 
-char	*str_input(char *s, char *str, t_options *options)
+int	right_align(char *s, char *str, t_options *options, t_idx *idx)
 {
-	int	s_idx;
-	int	s_len;
-	int	str_idx;
-	int	str_len;
-
-	s_idx = 0;
-	s_len = ft_strlen(s);
-	str_idx = 0;
-	str_len = str_length(s, *options);
-	if (options->prec > s_len)
-		options->prec = s_len;
-	if (options->minus == 0)
+	if (options->prec_flag == 1)
 	{
-		if (options->prec_flag == 1)
+		while (idx->str_idx < idx->str_len)
 		{
-			while (str_idx < str_len)
-			{
-				if (str_idx < str_len - options->prec)
-					str[str_idx++] = ' ';
-				else
-					str[str_idx++] = s[s_idx++];
-			}
-		}
-		else
-		{
-			while (str_idx < str_len)
-			{
-				if (str_idx < str_len - s_len)
-					str[str_idx++] = ' ';
-				else
-					str[str_idx++] = s[s_idx++];
-			}
+			if (idx->str_idx < idx->str_len - options->prec)
+				str[(idx->str_idx)++] = ' ';
+			else
+				str[(idx->str_idx)++] = s[(idx->s_idx)++];
 		}
 	}
-	return (str + str_idx);
+	else
+	{
+		while (idx->str_idx < idx->str_len)
+		{
+			if (idx->str_idx < idx->str_len - idx->s_len)
+				str[(idx->str_idx)++] = ' ';
+			else
+				str[(idx->str_idx)++] = s[(idx->s_idx)++];
+		}
+	}
+}
+
+int	left_align(char *s, char *str, t_options *options, t_idx *idx)
+{
+
+}
+
+char	*str_input(char *s, char *str, t_options *options)
+{
+	t_idx	idx;
+
+	idx.s_idx = 0;
+	idx.s_len = ft_strlen(s);
+	idx.str_idx = 0;
+	idx.str_len = str_length(s, *options);
+	if (options->prec > idx.s_len)
+		options->prec = idx.s_len;
+	if (options->minus == 0)
+		right_align(s, str, options, &idx);
+	else
+		left_align(s, str, options, &idx);
+	return (str + idx.str_idx);
 }

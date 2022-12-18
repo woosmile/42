@@ -50,7 +50,7 @@ int	total_length(char *s, va_list ap, t_options *options)
 	{
 		if (*s == '%')
 		{
-			check_options(s, options);
+			s = check_options(s, options);
 			s = variable_arg_length(s, ap, *options, &len);
 		}
 		else

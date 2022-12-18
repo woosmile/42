@@ -47,7 +47,7 @@ char	*check_width(char *s, t_options *options)
 {
 	if (*s >= '1' && *s <= '9')
 		options->width = ft_atoi(s);
-	while (*s != 0 && *s != '.')
+	while (*s != 0 && *s != '.')  //prec 없을 떄 무한루프 문제
 		s++;
 	return (s);
 }
@@ -70,18 +70,11 @@ char	*check_prec(char *s, t_options *options)
 	return (s);
 }
 
-void	check_options(char *s, t_options *options)
+char	*check_options(char *s, t_options *options)
 {
 	initial_options(options);
-	while (*s != 0)
-	{
-		if (*s == '%')
-		{
-			s = check_flag(s, options);
-			s = check_width(s, options);
-			s = check_prec(s, options);
-		}
-		else
-			s++;
-	}
+	s = check_flag(s, options);
+	s = check_width(s, options);
+	s = check_prec(s, options);
+	return (s);
 }

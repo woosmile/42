@@ -13,10 +13,10 @@ void	bonus_test()
 	printf("\n----------ft_printf BONUS test start----------\n\n");
 
 	printf("original printf\n");
-	result_o = printf("TEST : %9s, %c, %c TEST", s, c, c);
+	result_o = printf("TEST : %2.2s, %3c, TEST", s, c);
 
-	printf("\n\nft_printf\n");
-	result_ft = ft_printf("TEST : %9s, %c, %c TEST", s, c, c);
+	printf("\n\nft_printf\n"); 
+	result_ft = ft_printf("TEST : %2.2s, %3c, TEST", s, c);
 
 	printf("\n\n");
 	printf("original printf return : %d\n", result_o);
