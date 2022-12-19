@@ -10,15 +10,15 @@ void	bonus_test()
 	char 	*s = "12345678";
 	int		num = 123456789;
 	
-	printf("\n----------ft_printf BONUS test start----------\n\n");
+	ft_printf("\n----------ft_printf BONUS test start----------\n\n");
 
-	printf("original printf\n");
-	result_o = printf("TEST : %2.2s, %3c, TEST", s, c);
+	ft_printf("original printf\n");
+	result_o = printf("TEST : %p, %-10.100s, %-3c, %4c, %10s, TEST\n", s, s, c, c, s);
 
-	printf("\n\nft_printf\n"); 
-	result_ft = ft_printf("TEST : %2.2s, %3c, TEST", s, c);
+	ft_printf("\nft_printf\n"); 
+	result_ft = ft_printf("TEST : %p, %-10.100s, %-3c, %4c, %10s, TEST\n", s, s, c, c, s);
 
-	printf("\n\n");
+	ft_printf("\n");
 	printf("original printf return : %d\n", result_o);
 	printf("ft_printf return       : %d\n", result_ft);
 

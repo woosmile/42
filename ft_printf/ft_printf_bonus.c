@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:07:29 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/16 18:22:05 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:23:04 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*conversion_selector(char c, va_list ap, char *str, t_options *options)
 	else if (c == 's' && !(options->prec_flag == 1 && options->width == 0 \
 	&& options->prec == 0))
 		str = str_input(va_arg(ap, char *), str, options);
+	else if (c == 'p')
+		str = addr_input(va_arg(ap, char *), str, *options);
 	return (str);
 }
 
@@ -29,9 +31,6 @@ void	conversion_input(char *s, va_list ap, char *str, t_options *options)
 		if (*s == '%')
 		{
 			s = check_options(s, options);
-			//while (*s != 0 && (*s != 'c' && *s != 's' && *s != 'p' && \
-			//*s != 'i' && *s != 'u' && *s != 'd' && *s != 'x' && *s != 'X'))
-				//s++;
 			str = conversion_selector(*s, ap, str, options);
 			s++;
 		}

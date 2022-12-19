@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:47:32 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/16 18:17:55 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:23:09 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	initial_options(t_options *options)
 
 char	*check_flag(char *s, t_options *options)
 {
-	while (*s != 0 && !(*s >= '1' && *s <= '9'))
+	while (*s != 0 && !(*s >= '1' && *s <= '9') && (*s != 'c' && *s != 's' && \
+	*s != 'p' && *s != 'i' && *s != 'u' && *s != 'd' && *s != 'x' && *s != 'X'))
 	{
 		s++;
 		if (*s == '-')
@@ -43,29 +44,19 @@ char	*check_flag(char *s, t_options *options)
 	return (s);
 }
 
-char	*check_width(char *s, t_options *options)
-{
-	if (*s >= '1' && *s <= '9')
-		options->width = ft_atoi(s);
-	while (*s != 0 && *s != '.')  //prec 없을 떄 무한루프 문제
-		s++;
-	return (s);
-}
-
 char	*check_prec(char *s, t_options *options)
 {
-	if (*s != 0)
+	while (*s != 0 && (*s != 'c' && *s != 's' && *s != 'p' && \
+	*s != 'i' && *s != 'u' && *s != 'd' && *s != 'x' && *s != 'X'))
 	{
 		if (*s == '.')
 		{
 			options->prec_flag = 1;
 			s++;
+			if (*s >= '0' && *s <= '9')
+				options->prec = ft_atoi(s);
 		}
-		if (*s >= '0' && *s <= '9')
-			options->prec = ft_atoi(s);
-		while (*s != 0 && (*s != 'c' && *s != 's' && *s != 'p' && *s != 'i' && \
-		*s != 'u' && *s != 'd' && *s != 'x' && *s != 'X'))
-			s++;
+		s++;
 	}
 	return (s);
 }
@@ -74,7 +65,8 @@ char	*check_options(char *s, t_options *options)
 {
 	initial_options(options);
 	s = check_flag(s, options);
-	s = check_width(s, options);
+	if (*s >= '1' && *s <= '9')
+		options->width = ft_atoi(s);
 	s = check_prec(s, options);
 	return (s);
 }

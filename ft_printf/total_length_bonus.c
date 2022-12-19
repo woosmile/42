@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:16:54 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/16 17:22:00 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:23:34 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ char	*variable_arg_length(char *s, va_list ap, t_options options, int *len)
 			va_len = char_length(va_arg(ap, int), options);
 		else if (*s == 's')
 			va_len = str_length(va_arg(ap, char *), options);
-		/*
 		else if (*s == 'p')
 			va_len = addr_length(va_arg(ap, void *), options);
+		/*
 		else if (*s == 'd' || *s == 'i' || *s == 'u')
 			va_len = nbr_length(va_arg(ap, int), options);
 		else if (*s == 'x' || *s == 'X')

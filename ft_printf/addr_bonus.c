@@ -6,17 +6,46 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:17:26 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/14 17:20:57 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:22:50 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	check_addr_len(unsigned long long addr_temp)
+int	addr_length(void *addr,	t_options options)
+{
+	int					addr_len;
+	unsigned long long	addr_temp;
+
+	addr_len = 0;
+	addr_temp = (unsigned long long)addr;
+	if (addr_temp == 0)
+	{
+		addr_len = 3;
+		if (addr_len < options.width)
+			addr_len = options.width;
+	}
+	else
+	{
+		while (addr_temp > 0)
+		{
+			addr_temp = addr_temp / 16;
+			addr_len++;
+		}
+		addr_len = addr_len + 2;
+		if (addr_len < options.width)
+			addr_len = options.width;
+	}
+	return (addr_len);
+}
+
+int	addr_original_length(unsigned long long addr_temp)
 {
 	int	len;
 
 	len = 0;
+	if (addr_temp == 0)
+		len = 1;
 	while (addr_temp > 0)
 	{
 		addr_temp = addr_temp / 16;
@@ -25,48 +54,70 @@ int	check_addr_len(unsigned long long addr_temp)
 	return (len);
 }
 
-void	input_addr_value(unsigned long addr_temp, char *arr, int addr_len)
+void	right_addr(unsigned long long addr_temp, char *str, \
+				t_options options, int addr_len)
 {
 	int		i;
 	char	*hex;
+	int		s_len;
 
-	i = addr_len - 1;
+	i = 0;
 	hex = "0123456789abcdef";
-	arr[0] = '0';
-	arr[1] = 'x';
-	while (i >= 2)
+	s_len = addr_original_length(addr_temp);
+	while (i < addr_len - s_len - 2)
+		*(str + i++) = ' ';
+	*(str + i) = '0';
+	*(str + i + 1) = 'x';
+	if (addr_temp == 0)
+		*(str + i + 2) = '0';
+	else
 	{
-		arr[i] = hex[addr_temp % 16];
-		addr_temp = addr_temp / 16;
-		i--;
+		i = addr_len - 1;
+		while (i >= addr_len - s_len)
+		{
+			str[i] = hex[addr_temp % 16];
+			addr_temp = addr_temp / 16;
+			i--;
+		}
 	}
 }
 
-int	print_addr(void *addr, int *len)
+void	left_addr(unsigned long long addr_temp, char *str, \
+				t_options options, int addr_len)
 {
-	int					result;
+	int		i;
+	char	*hex;
+	int		s_len;
+
+	i = 0;
+	hex = "0123456789abcdef";
+	s_len = addr_original_length(addr_temp);
+	*(str) = '0';
+	*(str + 1) = 'x';
+	if (addr_temp == 0)
+		*(str + 2) = '0';
+	i = s_len + 1;
+	while (i >= 2)
+	{
+		str[i] = hex[addr_temp % 16];
+		addr_temp = addr_temp / 16;
+		i--;
+	}
+	i = s_len + 2;
+	while (i < addr_len)
+		*(str + i++) = ' ';
+}
+
+char	*addr_input(void *addr, char *str, t_options options)
+{
 	int					addr_len;
-	char				*arr;
 	unsigned long long	addr_temp;
 
-	result = 0;
-	addr_len = 0;
+	addr_len = addr_length(addr, options);
 	addr_temp = (unsigned long long)addr;
-	if (addr_temp == 0)
-	{
-		result = write(1, "0x0", 3);
-		*len = *len + 3;
-	}
+	if (options.minus == 1)
+		left_addr(addr_temp, str, options, addr_len);
 	else
-	{
-		addr_len = check_addr_len(addr_temp) + 2;
-		arr = (char *)malloc(addr_len * sizeof(char));
-		if (!arr)
-			return (-1);
-		input_addr_value(addr_temp, arr, addr_len);
-		result = write(1, arr, addr_len);
-		*len = *len + addr_len;
-		free(arr);
-	}
-	return (result);
+		right_addr(addr_temp, str, options, addr_len);
+	return (str + addr_len);
 }
