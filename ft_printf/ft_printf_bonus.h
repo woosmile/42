@@ -42,11 +42,13 @@ typedef struct s_var
 int		ft_printf(const char *s, ...);
 int		total_length(char *s, va_list ap, t_options *options);
 char	*check_options(char *s, t_options *options);
-int		char_length(char c, t_options options);
+int		char_length(t_options options);
 char	*char_input(char c, char *str, t_options options);
 int		str_length(char *s, t_options options);
 char	*str_input(char *s, char *str, t_options *options);
 int		addr_length(void *addr,	t_options options);
 char	*addr_input(void *addr, char *str, t_options options);
+int		nbr_length(long num, t_options options, char c);
+char	*nbr_input(long num, char *str, t_options options, char c);
 
 #endif

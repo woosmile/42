@@ -26,8 +26,9 @@ void	initial_options(t_options *options)
 
 char	*check_flag(char *s, t_options *options)
 {
-	while (*s != 0 && !(*s >= '1' && *s <= '9') && (*s != 'c' && *s != 's' && \
-	*s != 'p' && *s != 'i' && *s != 'u' && *s != 'd' && *s != 'x' && *s != 'X'))
+	while (*s != 0 && *s != '.' && !(*s >= '1' && *s <= '9') && \
+	(*s != 'c' && *s != 's' && *s != 'p' && *s != 'i' && *s != 'u' && \
+	*s != 'd' && *s != 'x' && *s != 'X'))
 	{
 		s++;
 		if (*s == '-')
@@ -52,9 +53,8 @@ char	*check_prec(char *s, t_options *options)
 		if (*s == '.')
 		{
 			options->prec_flag = 1;
-			s++;
-			if (*s >= '0' && *s <= '9')
-				options->prec = ft_atoi(s);
+			if (*(s + 1) >= '0' && *(s + 1) <= '9')
+				options->prec = ft_atoi(s + 1);
 		}
 		s++;
 	}

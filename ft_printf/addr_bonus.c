@@ -54,8 +54,7 @@ int	addr_original_length(unsigned long long addr_temp)
 	return (len);
 }
 
-void	right_addr(unsigned long long addr_temp, char *str, \
-				t_options options, int addr_len)
+void	right_addr(unsigned long long addr_temp, char *str, int addr_len)
 {
 	int		i;
 	char	*hex;
@@ -82,8 +81,7 @@ void	right_addr(unsigned long long addr_temp, char *str, \
 	}
 }
 
-void	left_addr(unsigned long long addr_temp, char *str, \
-				t_options options, int addr_len)
+void	left_addr(unsigned long long addr_temp, char *str, int addr_len)
 {
 	int		i;
 	char	*hex;
@@ -116,8 +114,8 @@ char	*addr_input(void *addr, char *str, t_options options)
 	addr_len = addr_length(addr, options);
 	addr_temp = (unsigned long long)addr;
 	if (options.minus == 1)
-		left_addr(addr_temp, str, options, addr_len);
+		left_addr(addr_temp, str, addr_len);
 	else
-		right_addr(addr_temp, str, options, addr_len);
+		right_addr(addr_temp, str, addr_len);
 	return (str + addr_len);
 }

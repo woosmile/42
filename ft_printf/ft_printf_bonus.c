@@ -21,6 +21,8 @@ char	*conversion_selector(char c, va_list ap, char *str, t_options *options)
 		str = str_input(va_arg(ap, char *), str, options);
 	else if (c == 'p')
 		str = addr_input(va_arg(ap, char *), str, *options);
+	else if (c == 'd' || c == 'i' || c == 'u')
+		str = nbr_input(va_arg(ap, int), str, *options, c);
 	return (str);
 }
 
@@ -32,7 +34,8 @@ void	conversion_input(char *s, va_list ap, char *str, t_options *options)
 		{
 			s = check_options(s, options);
 			str = conversion_selector(*s, ap, str, options);
-			s++;
+			if (*s != 0)
+				s++;
 		}
 		else
 		{

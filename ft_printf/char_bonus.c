@@ -12,7 +12,7 @@
 
 #include "ft_printf_bonus.h"
 
-int	char_length(char c, t_options options)
+int	char_length(t_options options)
 {
 	int	len;
 

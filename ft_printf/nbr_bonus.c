@@ -12,53 +12,121 @@
 
 #include "ft_printf_bonus.h"
 
-int	check_len_u(unsigned int n)
+int	nbr_original_length(long num)
 {
-	int		n_len;
+	int		len;
 
-	n_len = 0;
-	if (n == 0)
-		n_len = 1;
-	while (n > 0)
+	len = 0;
+	if (num == 0)
+		len = 1;
+	if (num < 0)
 	{
-		n = n / 10;
-		n_len++;
+		len++;
+		num = num * -1;
 	}
-	return (n_len);
+	while (num > 0)
+	{
+		num = num / 10;
+		len++;
+	}
+	return (len);
 }
 
-void	input_number_u(unsigned int n, int n_len, char *num_arr)
+int	nbr_length(long num, t_options options, char c)
 {
-	int		i;
+	int	r_len;
 
-	i = n_len - 1;
-	if (n == 0)
-		num_arr[0] = '0';
-	while (i >= 0)
+	r_len = nbr_original_length(num);
+	if (r_len < options.width || r_len < options.prec)
 	{
-		num_arr[i] = (n % 10) + '0';
-		n = n / 10;
-		i--;
+		if (options.width > options.prec)
+			r_len = options.width;
+		else
+		{
+			r_len = options.prec;
+			if (c != 'u' && (options.blank || options.plus))
+				r_len++;
+		}
 	}
+	else
+	{
+		if (num > 0 && c != 'u' && (options.blank || options.plus))
+			r_len++;
+	}
+	return (r_len);
 }
 
-int	print_nbr_u(unsigned int n, int *len)
+void	right_nbr(char *str, char *itoa, t_options *options, t_var *var)
 {
-	int		n_len;
-	int		i;
-	char	num_arr[10];
-	int		result;
+	int	negative;
 
-	n_len = check_len_u(n);
-	i = 0;
-	result = 0;
-	while (i < 10)
+	negative = 0;
+	if (itoa[0] == '-')
+		negative = 1;
+
+	if (options->prec_flag == 1)
 	{
-		num_arr[i] = 0;
-		i++;
+		while (var->str_idx < var->str_len)
+		{
+			if (var->str_idx < var->str_len - var->s_len + negative)
+			{
+				if (options->prec > var->str_len - var->str_idx)
+					str[var->str_idx] = '0';
+				else
+					str[var->str_idx] = ' ';
+			}
+			else
+				str[var->str_idx] = itoa[negative + (var->s_idx)++];
+			(var->str_idx)++;
+		}
+		if (options->plus == 1 && negative == 0)
+		{
+			if (options->prec < var->s_len)
+				str[var->str_len - var->s_len - 1] = '+';
+			else
+				str[var->str_len - options->prec - 1] = '+';
+		}
+		if (negative == 1)
+		{
+			if (options->prec < var->s_len)
+				str[var->str_len - var->s_len - 1] = '-';
+			else
+				str[var->str_len - options->prec - 1] = '-';
+		}
 	}
-	input_number_u(n, n_len, num_arr);
-	result = write(1, num_arr, n_len);
-	*len = *len + n_len;
-	return (result);
+	else
+	{
+		while (var->str_idx < var->str_len)
+		{
+			if (var->str_idx < var->str_len - var->s_len)
+			{
+				if (options->zero == 1)
+					str[var->str_idx] = '0';
+				else
+					str[var->str_idx] = ' ';
+			}
+			else
+				str[var->str_idx] = itoa[negative + (var->s_idx)++];
+			(var->str_idx)++;
+		}
+	}
+	
+}
+
+char	*nbr_input(long num, char *str, t_options options, char c)	//width, prec_flag, ' ', 0, +, -
+{
+	char	*itoa;
+	t_var	var;
+
+	itoa = ft_itoa(num);
+	var.s_idx = 0;
+	var.s_len = nbr_original_length(num);
+	var.str_idx = 0;
+	var.str_len = nbr_length(num, options, c);
+	if (options.minus == 0)
+		right_nbr(str, itoa, &options, &var);
+	//else
+	//	left_nbr(str, itoa, options, &var);
+	free(itoa);
+	return (str + var.str_len);
 }
