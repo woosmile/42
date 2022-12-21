@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:32:22 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/19 18:23:16 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/21 13:44:11 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	str_length(char *s, t_options options)
 	int	s_len;
 	int	len;
 
+	if (options.prec_flag == 1 && options.width == 0 && options.prec == 0)
+		return (0);
 	s_len = ft_strlen(s);
 	len = 0;
 	if (options.prec_flag == 1)
@@ -88,6 +90,8 @@ char	*str_input(char *s, char *str, t_options *options)
 {
 	t_var	var;
 
+	if (options->prec_flag == 1 && options->width == 0 && options->prec == 0)
+		return (0);
 	var.s_idx = 0;
 	var.s_len = ft_strlen(s);
 	var.str_idx = 0;

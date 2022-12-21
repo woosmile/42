@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:07:29 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/19 18:23:04 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:45:24 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ char	*conversion_selector(char c, va_list ap, char *str, t_options *options)
 {
 	if (c == 'c')
 		str = char_input(va_arg(ap, int), str, *options);
-	else if (c == 's' && !(options->prec_flag == 1 && options->width == 0 \
-	&& options->prec == 0))
+	else if (c == 's')
 		str = str_input(va_arg(ap, char *), str, options);
 	else if (c == 'p')
 		str = addr_input(va_arg(ap, char *), str, *options);
-	else if (c == 'd' || c == 'i' || c == 'u')
+	else if (c == 'd' || c == 'i')
 		str = nbr_input(va_arg(ap, int), str, *options, c);
+	else if (c == 'u')
+		str = nbr_input(va_arg(ap, unsigned int), str, *options, c);
 	return (str);
 }
 

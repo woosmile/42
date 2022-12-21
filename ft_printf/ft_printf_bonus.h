@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:08:00 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/19 18:23:39 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:38:19 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,14 @@ int		addr_length(void *addr,	t_options options);
 char	*addr_input(void *addr, char *str, t_options options);
 int		nbr_length(long num, t_options options, char c);
 char	*nbr_input(long num, char *str, t_options options, char c);
+int		negative_check(char *itoa);
+void	right_nbr_prec(char *str, char *itoa, t_options *options, t_var *var);
+void	right_nbr_width(char *str, char *itoa, t_options *options, t_var *var);
+void	right_pos_input(char *str, t_options *options, t_var *var);
+void	right_neg_input(char *str, t_options *options, t_var *var);
+void	left_nbr_prec(char *str, char *itoa, t_options *options, t_var *var);
+void	left_nbr_width(char *str, char *itoa, t_options *options, t_var *var);
+//void	left_pos_input(char *str, t_options *options, t_var *var);
+//void	left_neg_input(char *str, t_options *options, t_var *var);
 
 #endif

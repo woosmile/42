@@ -7,19 +7,19 @@ void	bonus_test()
 	int				result_ft = 0;
 
 	char			c = '@';
-	char 			*s = "12345678";
-	int				num = -12345678;
+	char 			*s = "TEST STRING";
+	unsigned int	num = 0;
 
 	ft_printf("\n----------ft_printf BONUS test start----------\n\n");
 
 	ft_printf("original printf\n");
-	//result_o = printf("TEST : %-20p, %-10.100s, %c, %4c, %.1s", s, s, c, c, s);
-	result_o = printf("%+20.1d", num);
+	//result_o = printf("TEST : %-49.22d, %-20p, %-10.100s, %c, %4c, %.1s", num, s, s, c, c, s);
+	result_o = printf("%-1.d", num);
 	printf("\n");
 
 	ft_printf("\nft_printf\n");
-	//result_ft = ft_printf("TEST : %-20p, %-10.100s, %c, %4c, %.1s", s, s, c, c, s);
-	result_ft = ft_printf("%+20.1d", num);
+	//result_ft = ft_printf("TEST : %49.53d, %-20p, %-10.100s, %c, %4c, %.1s", num, s, s, c, c, s);
+	result_ft = ft_printf("%-1.d", num);
 
 	ft_printf("\n\n");
 	printf("original printf return : %d\n", result_o);
