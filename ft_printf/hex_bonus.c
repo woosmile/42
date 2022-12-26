@@ -6,66 +6,37 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:17:26 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/14 17:21:24 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/26 19:49:59 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	check_hex_len(unsigned int n)
+int	hex_length(unsigned int num, t_options options, char c)
 {
-	int	len;
+	int				len;
+	unsigned int	num_temp;
 
+	if (!num && options.prec_flag && !options.width && !options.prec)
+		return (0);
 	len = 0;
-	while (n > 0)
+	if (options.hash == 1)
 	{
-		n = n / 16;
+		len = 2;
+		options.prec = options.prec + 2;
+	}
+	num_temp = num;
+	while (num_temp > 0)
+	{
+		num_temp = num_temp / 16;
 		len++;
 	}
+	nbr_length_check_width_prec(num, options, c, &len);
+	if (num != 0 && options.hash == 1 && (len < options.prec))
+	{
+		len = len + 2;
+		if (len <= options.prec)
+			len = options.prec;
+	}
 	return (len);
-}
-
-void	input_hex_value(unsigned int n, char *arr, int n_len, char c)
-{
-	int		i;
-	char	*hex;
-
-	i = n_len - 1;
-	if (c == 'x')
-		hex = "0123456789abcdef";
-	else if (c == 'X')
-		hex = "0123456789ABCDEF";
-	while (i >= 0)
-	{
-		arr[i] = hex[n % 16];
-		n = n / 16;
-		i--;
-	}
-}
-
-int	print_hex(unsigned int n, int *len, char c)
-{
-	int		result;
-	int		n_len;
-	char	*arr;
-
-	result = 0;
-	n_len = 0;
-	if (n == 0)
-	{
-		result = write(1, "0", 1);
-		(*len)++;
-	}
-	else
-	{
-		n_len = check_hex_len(n);
-		arr = (char *)malloc(n_len * sizeof(char));
-		if (!arr)
-			return (-1);
-		input_hex_value(n, arr, n_len, c);
-		result = write(1, arr, n_len);
-		*len = *len + n_len;
-		free(arr);
-	}
-	return (result);
 }

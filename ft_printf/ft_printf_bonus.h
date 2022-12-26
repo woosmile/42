@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:08:00 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/22 20:48:51 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/26 17:58:45 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,15 @@ int		addr_length(void *addr,	t_options options);
 char	*addr_input(void *addr, char *str, t_options options);
 int		nbr_length(long num, t_options options, char c);
 char	*nbr_input(long num, char *str, t_options options, char c);
+int		nbr_original_length(long num);
 int		negative_check(char *itoa);
+int		nbr_length_check_width_prec(long num, t_options options, char c, int *r_len);
 void	right_nbr_prec(char *str, char *itoa, t_options *options, t_var *var);
 void	right_nbr_width(char *str, char *itoa, t_options *options, t_var *var);
 void	right_pos_input(char *str, t_options *options, t_var *var, int offset);
 void	right_neg_input(char *str, t_options *options, t_var *var);
 void	left_nbr_prec(char *str, char *itoa, t_options *options, t_var *var);
 void	left_nbr_width(char *str, char *itoa, t_options *options, t_var *var);
+int		hex_length(unsigned int num, t_options options, char c);
 
 #endif

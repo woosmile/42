@@ -6,61 +6,50 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:04:19 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/22 22:29:49 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:57:59 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	nbr_original_length(long num)
+int	nbr_length_check_width_prec(long num, t_options options, char c, int *r_len)
 {
-	int		len;
-
-	len = 0;
-	if (num == 0)
-		len = 1;
-	else if (num < 0)
+	if (options.prec_flag == 1)
 	{
-		len++;
-		num = num * -1;
+		if (options.width > options.prec && options.width > *r_len)
+		{
+			*r_len = options.width;
+			return (1);
+		}
+		else if (options.prec >= *r_len)
+		{
+			*r_len = options.prec;
+			if (c != 'u' && (options.blank || options.plus || (num < 0)))
+				(*r_len)++;
+			return (1);
+		}
 	}
-	while (num > 0)
+	else if (options.width > *r_len)
 	{
-		num = num / 10;
-		len++;
+		*r_len = options.width;
+		return (1);
 	}
-	return (len);
+	return (0);
 }
 
 int	nbr_length(long num, t_options options, char c)
 {
 	int	r_len;
-	int	negative;
 
 	if (num == 0 && options.prec_flag == 1 && options.width == 0 && \
 		options.prec == 0 && options.blank == 0 && options.plus == 0)
 		return (0);
 	r_len = nbr_original_length(num);
-	if (options.prec_flag == 1)
-	{
-		if (options.width > options.prec && options.width > r_len)
-		{
-			r_len = options.width;
-			return (r_len);
-		}
-		if (options.prec >= r_len)	//this part1
-			r_len = options.prec;
-	}
-	else
-	{
-		if (options.width > r_len)
-		{
-			r_len = options.width;
-			return (r_len);
-		}
-	}
-	if (c != 'u' && (options.blank || options.plus))	//this part2
-		r_len++;
+	if (nbr_length_check_width_prec(num, options, c, &r_len))
+		return (r_len);
+	if (num >= 0 && c != 'u' && (options.blank || options.plus))
+		r_len = r_len + 1 \
+		- (!num && options.prec_flag && (options.blank || options.plus));
 	return (r_len);
 }
 

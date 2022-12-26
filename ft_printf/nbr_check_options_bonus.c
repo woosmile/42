@@ -6,11 +6,31 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:51:18 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/22 20:50:08 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:28:30 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
+
+int	nbr_original_length(long num)
+{
+	int		len;
+
+	len = 0;
+	if (num == 0)
+		len = 1;
+	else if (num < 0)
+	{
+		len++;
+		num = num * -1;
+	}
+	while (num > 0)
+	{
+		num = num / 10;
+		len++;
+	}
+	return (len);
+}
 
 int	negative_check(char *itoa)
 {

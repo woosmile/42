@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:47:32 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/19 18:23:09 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/26 17:18:26 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ char	*check_flag(char *s, t_options *options)
 
 char	*check_prec(char *s, t_options *options)
 {
-	while (*s != 0 && (*s != 'c' && *s != 's' && *s != 'p' && \
-	*s != 'i' && *s != 'u' && *s != 'd' && *s != 'x' && *s != 'X'))
+	while (*s != 0 && (*s != 'c' && *s != 's' && *s != 'p' && *s != 'i' && \
+	*s != 'u' && *s != 'd' && *s != 'x' && *s != 'X'))
 	{
 		if (*s == '.')
 		{

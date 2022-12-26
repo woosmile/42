@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:07:29 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/22 20:50:18 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:18:08 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*conversion_selector(char c, va_list ap, char *str, t_options *options)
 		str = nbr_input(va_arg(ap, int), str, *options, c);
 	else if (c == 'u')
 		str = nbr_input(va_arg(ap, unsigned int), str, *options, c);
+	//else if (c == 'x' || c == 'X')
+	//	str = hex_input(va_arg(ap, int), str, *options, c);
 	return (str);
 }
 
@@ -33,10 +35,19 @@ void	conversion_input(char *s, va_list ap, char *str, t_options *options)
 	{
 		if (*s == '%')
 		{
-			s = check_options(s, options);
-			str = conversion_selector(*s, ap, str, options);
-			if (*s != 0)
-				s++;
+			if (*(s + 1) == '%')
+			{
+				*str = *s;
+				str++;
+				s = s + 2;
+			}
+			else
+			{
+				s = check_options(s, options);
+				str = conversion_selector(*s, ap, str, options);
+				if (*s != 0)
+					s++;
+			}
 		}
 		else
 		{
