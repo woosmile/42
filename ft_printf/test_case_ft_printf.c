@@ -8,16 +8,15 @@ void	bonus_test()
 
 	char	c = '@';
 	char	*s = "TEST STRING";
-	int	num = 888;
-
+	int	num = 0;
 
 	printf("\n----------ft_printf BONUS test start----------\n\n");
 
-	result_o = printf("%0#14.X", num);
+	result_o = printf("%#.x", num);
 	printf("\n");
-	result_ft = ft_printf("%0#14.X", num);
-	//result_o = printf("TEST : %-.x, %-20p, %-10.100s, %%%%%c, %4c, %.1s %d %% \n", num, s, s, c, c, s, num);
-	//result_ft = ft_printf("TEST : %-.x, %-20p, %-10.100s, %%%%%c, %4c, %.1s %d %% \n", num, s, s, c, c, s, num);
+	result_ft = ft_printf("%#.x", num);
+	//result_o = printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %4c, %.1s %d %% \n", num, s, s, c, c, s, num);
+	//result_ft = ft_printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %4c, %.1s %d %% \n", num, s, s, c, c, s, num);
 	/*
 	result_o = printf("1. %d, %0d, %1d, %2d, %3d, %4d, %5d, %10d, %20d.", num, num, num, num, num, num, num, num, num);
 	printf("\n");
@@ -26,6 +25,7 @@ void	bonus_test()
 	
 	result_o = printf("2. %.d, %0.d, %1.d, %2.d, %3.d, %4.d, %5.d, %10.d, %20.d.", num, num, num, num, num, num, num, num, num);
 	printf("\n");
+
 	result_ft = ft_printf("2. %.d, %0.d, %1.d, %2.d, %3.d, %4.d, %5.d, %10.d, %20.d.", num, num, num, num, num, num, num, num, num);
 	printf("\n\n");
 	

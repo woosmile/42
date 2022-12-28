@@ -6,13 +6,13 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:04:19 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/26 16:57:59 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/28 18:32:46 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	nbr_length_check_width_prec(long num, t_options options, char c, int *r_len)
+int	nbr_length_width_prec(long num, t_options options, char c, int *r_len)
 {
 	if (options.prec_flag == 1)
 	{
@@ -45,7 +45,7 @@ int	nbr_length(long num, t_options options, char c)
 		options.prec == 0 && options.blank == 0 && options.plus == 0)
 		return (0);
 	r_len = nbr_original_length(num);
-	if (nbr_length_check_width_prec(num, options, c, &r_len))
+	if (nbr_length_width_prec(num, options, c, &r_len))
 		return (r_len);
 	if (num >= 0 && c != 'u' && (options.blank || options.plus))
 		r_len = r_len + 1 \
@@ -53,40 +53,40 @@ int	nbr_length(long num, t_options options, char c)
 	return (r_len);
 }
 
-void	nbr_value_input(char *str, char *itoa, t_options *options, t_var *var)
+void	nbr_value_input(char *str, char *itoa, t_options options, t_var var)
 {
-	if (options->minus == 0)
+	if (options.minus == 0)
 	{
-		if (options->prec_flag == 1)
+		if (options.prec_flag == 1)
 			right_nbr_prec(str, itoa, options, var);
 		else
 			right_nbr_width(str, itoa, options, var);
 	}
 	else
 	{
-		if (options->prec_flag == 1)
+		if (options.prec_flag == 1)
 			left_nbr_prec(str, itoa, options, var);
 		else
 			left_nbr_width(str, itoa, options, var);
 	}
 }
 
-void	neg_pos_input(long num, char *str, t_options *options, t_var *var)
+void	neg_pos_input(long num, char *str, t_options options, t_var var)
 {
-	if (options->minus == 0)
+	if (options.minus == 0)
 	{
 		if (num < 0)
 			right_neg_input(str, options, var);
-		else if ((options->blank == 1 || options->plus == 1) && num >= 0)
+		else if ((options.blank == 1 || options.plus == 1) && num >= 0)
 			right_pos_input(str, options, var, 0);
 	}
 	else
 	{
 		if (num < 0)
 			str[0] = '-';
-		if (options->blank == 1 && num >= 0)
+		if (options.blank == 1 && num >= 0)
 			str[0] = ' ';
-		if (options->plus == 1 && num >= 0)
+		if (options.plus == 1 && num >= 0)
 			str[0] = '+';
 	}
 }
@@ -100,13 +100,15 @@ char	*nbr_input(long num, char *str, t_options options, char c)
 		options.prec == 0 && options.blank == 0 && options.plus == 0))
 	{
 		itoa = ft_itoa(num);
+		if (!itoa)
+			return (0);
 		var.s_idx = 0;
 		var.s_len = nbr_original_length(num);
 		var.str_idx = 0;
 		var.str_len = nbr_length(num, options, c);
-		nbr_value_input(str, itoa, &options, &var);
+		nbr_value_input(str, itoa, options, var);
 		if (c != 'u')
-			neg_pos_input(num, str, &options, &var);
+			neg_pos_input(num, str, options, var);
 		free(itoa);
 		return (str + var.str_len);
 	}

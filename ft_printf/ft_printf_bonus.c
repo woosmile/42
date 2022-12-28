@@ -6,26 +6,26 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:07:29 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/26 18:18:08 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/28 18:11:18 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-char	*conversion_selector(char c, va_list ap, char *str, t_options *options)
+char	*conversion_selector(char c, va_list ap, char *str, t_options options)
 {
 	if (c == 'c')
-		str = char_input(va_arg(ap, int), str, *options);
+		str = char_input(va_arg(ap, int), str, options);
 	else if (c == 's')
 		str = str_input(va_arg(ap, char *), str, options);
 	else if (c == 'p')
-		str = addr_input(va_arg(ap, char *), str, *options);
+		str = addr_input(va_arg(ap, char *), str, options);
 	else if (c == 'd' || c == 'i')
-		str = nbr_input(va_arg(ap, int), str, *options, c);
+		str = nbr_input(va_arg(ap, int), str, options, c);
 	else if (c == 'u')
-		str = nbr_input(va_arg(ap, unsigned int), str, *options, c);
-	//else if (c == 'x' || c == 'X')
-	//	str = hex_input(va_arg(ap, int), str, *options, c);
+		str = nbr_input(va_arg(ap, unsigned int), str, options, c);
+	else if (c == 'x' || c == 'X')
+		str = hex_input(va_arg(ap, int), str, options, c);
 	return (str);
 }
 
@@ -44,7 +44,7 @@ void	conversion_input(char *s, va_list ap, char *str, t_options *options)
 			else
 			{
 				s = check_options(s, options);
-				str = conversion_selector(*s, ap, str, options);
+				str = conversion_selector(*s, ap, str, *options);
 				if (*s != 0)
 					s++;
 			}
@@ -67,7 +67,7 @@ int	ft_printf(const char *s, ...)
 
 	va_start(ap, s);
 	s_temp = (char *)s;
-	options.len = total_length(s_temp, ap, &options);
+	total_length(s_temp, ap, &options);
 	str = (char *)malloc(sizeof(char) * options.len);
 	if (!str)
 		return (0);

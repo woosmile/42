@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:32:22 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/21 13:44:11 by woosekim         ###   ########.fr       */
+/*   Updated: 2022/12/28 15:31:57 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,69 +38,71 @@ int	str_length(char *s, t_options options)
 	return (len);
 }
 
-void	right_str(char *s, char *str, t_options *options, t_var *var)
+int	right_str(char *s, char *str, t_options options, t_var var)
 {
-	if (options->prec_flag == 1)
+	if (options.prec_flag == 1)
 	{
-		while (var->str_idx < var->str_len)
+		while (var.str_idx < var.str_len)
 		{
-			if (var->str_idx < var->str_len - options->prec)
-				str[(var->str_idx)++] = ' ';
+			if (var.str_idx < var.str_len - options.prec)
+				str[(var.str_idx)++] = ' ';
 			else
-				str[(var->str_idx)++] = s[(var->s_idx)++];
+				str[(var.str_idx)++] = s[(var.s_idx)++];
 		}
 	}
 	else
 	{
-		while (var->str_idx < var->str_len)
+		while (var.str_idx < var.str_len)
 		{
-			if (var->str_idx < var->str_len - var->s_len)
-				str[(var->str_idx)++] = ' ';
+			if (var.str_idx < var.str_len - var.s_len)
+				str[(var.str_idx)++] = ' ';
 			else
-				str[(var->str_idx)++] = s[(var->s_idx)++];
+				str[(var.str_idx)++] = s[(var.s_idx)++];
 		}
 	}
+	return (var.str_idx);
 }
 
-void	left_str(char *s, char *str, t_options *options, t_var *var)
+int	left_str(char *s, char *str, t_options options, t_var var)
 {
-	if (options->prec_flag == 1)
+	if (options.prec_flag == 1)
 	{
-		while (var->str_idx < var->str_len)
+		while (var.str_idx < var.str_len)
 		{
-			if (var->str_idx < options->prec)
-				str[(var->str_idx)++] = s[(var->s_idx)++];
+			if (var.str_idx < options.prec)
+				str[(var.str_idx)++] = s[(var.s_idx)++];
 			else
-				str[(var->str_idx)++] = ' ';
+				str[(var.str_idx)++] = ' ';
 		}
 	}
 	else
 	{
-		while (var->str_idx < var->str_len)
+		while (var.str_idx < var.str_len)
 		{
-			if (var->str_idx < var->s_len)
-				str[(var->str_idx)++] = s[(var->s_idx)++];
+			if (var.str_idx < var.s_len)
+				str[(var.str_idx)++] = s[(var.s_idx)++];
 			else
-				str[(var->str_idx)++] = ' ';
+				str[(var.str_idx)++] = ' ';
 		}
 	}
+	return (var.str_idx);
 }
 
-char	*str_input(char *s, char *str, t_options *options)
+char	*str_input(char *s, char *str, t_options options)
 {
 	t_var	var;
 
-	if (options->prec_flag == 1 && options->width == 0 && options->prec == 0)
+	if (options.prec_flag == 1 && options.width == 0 && options.prec == 0)
 		return (0);
 	var.s_idx = 0;
 	var.s_len = ft_strlen(s);
 	var.str_idx = 0;
-	var.str_len = str_length(s, *options);
-	if (options->prec > var.s_len)
-		options->prec = var.s_len;
-	if (options->minus == 0)
-		right_str(s, str, options, &var);
+	var.str_len = str_length(s, options);
+	if (options.prec > var.s_len)
+		options.prec = var.s_len;
+	if (options.minus == 0)
+		var.str_idx = right_str(s, str, options, var);
 	else
-		left_str(s, str, options, &var);
+		var.str_idx = left_str(s, str, options, var);
 	return (str + var.str_idx);
 }
