@@ -8,13 +8,13 @@ void	bonus_test()
 
 	char	c = '@';
 	char	*s = "TEST STRING";
-	int	num = 0;
+	int		num = -123123;
 
 	printf("\n----------ft_printf BONUS test start----------\n\n");
 
-	result_o = printf("%#.x", num);
+	result_o = printf("%#70.10x", num);
 	printf("\n");
-	result_ft = ft_printf("%#.x", num);
+	result_ft = ft_printf("%#70.10x", num);
 	//result_o = printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %4c, %.1s %d %% \n", num, s, s, c, c, s, num);
 	//result_ft = ft_printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %4c, %.1s %d %% \n", num, s, s, c, c, s, num);
 	/*

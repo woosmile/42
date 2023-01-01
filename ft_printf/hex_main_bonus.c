@@ -55,18 +55,18 @@ void	hex_value_input(char *hex_num, char *str, t_options options, t_var var)
 	{
 		if (options.prec_flag == 1)
 			right_hex_prec(hex_num, str, options, var);
-		//else
-		//	right_hex_width(num, str, options, var);
+		else
+			right_hex_width(hex_num, str, options, var);
 	}
-	/*
 	else
 	{
 		if (options.prec_flag == 1)
-			left_hex_prec(num, str, options, var);
+			left_hex_prec(hex_num, str, options, var);
 		else
-			left_hex_width(num, str, options, var);
-	}*/
-	//hash_input(str, options, var);
+			left_hex_width(hex_num, str, options, var);
+	}
+	/*if (options.hash)
+		hash_input(str, options, var);*/
 }
 
 char	*hex_itoa(unsigned int num, int len, char c)

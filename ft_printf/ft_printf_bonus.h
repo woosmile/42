@@ -62,5 +62,8 @@ void	left_nbr_width(char *str, char *itoa, t_options options, t_var var);
 int		hex_length(unsigned int num, t_options options, char c);
 char	*hex_input(unsigned int num, char *str, t_options options, char c);
 void	right_hex_prec(char *hex_num, char *str, t_options options, t_var var);
+void	right_hex_width(char *hex_num, char *str, t_options options, t_var var);
+void	left_hex_prec(char *hex_num, char *str, t_options options, t_var var);
+void	left_hex_width(char *hex_num, char *str, t_options options, t_var var);
 
 #endif
