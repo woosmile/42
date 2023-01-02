@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:17:26 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/28 18:38:05 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:19:04 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ void	hex_value_input(char *hex_num, char *str, t_options options, t_var var)
 		else
 			left_hex_width(hex_num, str, options, var);
 	}
-	/*if (options.hash)
-		hash_input(str, options, var);*/
 }
 
 char	*hex_itoa(unsigned int num, int len, char c)
@@ -109,6 +107,8 @@ char	*hex_input(unsigned int num, char *str, t_options options, char c)
 		if (!hex_num)
 			return (str);
 		hex_value_input(hex_num, str, options, var);
+		if (options.hash)
+			hash_input(str, options, var, c);
 		free(hex_num);
 		return (str + var.str_len);
 	}

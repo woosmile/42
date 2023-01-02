@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:08:00 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/28 18:32:41 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:19:10 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void	right_hex_prec(char *hex_num, char *str, t_options options, t_var var);
 void	right_hex_width(char *hex_num, char *str, t_options options, t_var var);
 void	left_hex_prec(char *hex_num, char *str, t_options options, t_var var);
 void	left_hex_width(char *hex_num, char *str, t_options options, t_var var);
+void	hash_input(char *str, t_options options, t_var var, char c);
 
 #endif

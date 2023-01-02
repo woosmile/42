@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:07:29 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/28 18:11:18 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/02 14:23:25 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_printf(const char *s, ...)
 	total_length(s_temp, ap, &options);
 	str = (char *)malloc(sizeof(char) * options.len);
 	if (!str)
-		return (0);
+		return (-1);
 	va_start(ap, s);
 	conversion_input(s_temp, ap, str, &options);
 	if (write (1, str, options.len) == -1)

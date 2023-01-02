@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:46:26 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/28 18:28:31 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:19:07 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ void	left_hex_prec(char *hex_num, char *str, t_options options, t_var var)
 	int	offset;
 
 	if (options.prec < var.s_len)
-		offset = (options.blank || options.plus);
+		offset = (options.blank || options.plus || options.hash) + options.hash;
 	else
-		offset = options.prec - var.s_len + (options.blank || options.plus);
+		offset = options.prec - var.s_len + \
+		(options.blank || options.plus || options.hash) + options.hash;
 	while (var.str_idx < var.str_len)
 	{
 		if (var.str_idx < offset)
@@ -79,7 +80,7 @@ void	left_hex_width(char *hex_num, char *str, t_options options, t_var var)
 {
 	int	offset;
 
-	offset = (options.blank || options.plus);
+	offset = (options.blank || options.plus || options.hash) + options.hash;
 	while (var.str_idx < var.str_len)
 	{
 		if (var.s_idx < var.s_len)
@@ -87,5 +88,18 @@ void	left_hex_width(char *hex_num, char *str, t_options options, t_var var)
 		else
 			str[var.str_idx + offset] = ' ';
 		(var.str_idx)++;
+	}
+}
+
+void	hash_input(char *str, t_options options, t_var var, char c)
+{
+	if (options.minus)
+		str[1] = c;
+	else
+	{
+		if (options.prec < var.s_len)
+			options.prec = var.s_len;
+		str[var.str_len - options.prec - 2] = '0';
+		str[var.str_len - options.prec - 1] = c;
 	}
 }

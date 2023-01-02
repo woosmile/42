@@ -7,16 +7,18 @@ void	bonus_test()
 	int	result_ft = 0;
 
 	char	c = '@';
-	char	*s = "TEST STRING";
+	char	*s = 0;
 	int		num = -123123;
 
 	printf("\n----------ft_printf BONUS test start----------\n\n");
 
-	result_o = printf("%#70.10x", num);
+	/*
+	result_o = printf("%#15.X, %p, %105.100s", num, s, s);
 	printf("\n");
-	result_ft = ft_printf("%#70.10x", num);
-	//result_o = printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %4c, %.1s %d %% \n", num, s, s, c, c, s, num);
-	//result_ft = ft_printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %4c, %.1s %d %% \n", num, s, s, c, c, s, num);
+	result_ft = ft_printf("%#15.X, %p, %105.100s", num, s, s);
+	*/
+	result_o = printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %4c, %.8s %d %%, %#-06.8x \n", num, s, s, c, c, s, num, num);
+	result_ft = ft_printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %4c, %.8s %d %%, %#-06.8x \n", num, s, s, c, c, s, num, num);
 	/*
 	result_o = printf("1. %d, %0d, %1d, %2d, %3d, %4d, %5d, %10d, %20d.", num, num, num, num, num, num, num, num, num);
 	printf("\n");
