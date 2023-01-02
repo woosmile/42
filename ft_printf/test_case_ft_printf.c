@@ -6,7 +6,7 @@ void	bonus_test()
 	int	result_o = 0;
 	int	result_ft = 0;
 
-	char	c = '@';
+	char	c = '0';
 	char	*s = 0;
 	int		num = -123123;
 
@@ -17,8 +17,14 @@ void	bonus_test()
 	printf("\n");
 	result_ft = ft_printf("%#15.X, %p, %105.100s", num, s, s);
 	*/
-	result_o = printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %4c, %.8s %d %%, %#-06.8x \n", num, s, s, c, c, s, num, num);
-	result_ft = ft_printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %4c, %.8s %d %%, %#-06.8x \n", num, s, s, c, c, s, num, num);
+
+	
+	result_o = printf("%#X, %+5.i", -1, 0);
+	printf("\n");
+	result_ft = ft_printf("%#X, %+5.i", -1, 0);
+	
+	//result_o = printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %-1c, %.8s %d %%, %#-06.8x \n", num, s, s, c, c, s, num, num);
+	//result_ft = ft_printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %-1c, %.8s %d %%, %#-06.8x \n", num, s, s, c, c, s, num, num);
 	/*
 	result_o = printf("1. %d, %0d, %1d, %2d, %3d, %4d, %5d, %10d, %20d.", num, num, num, num, num, num, num, num, num);
 	printf("\n");

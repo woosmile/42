@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:46:26 by woosekim          #+#    #+#             */
-/*   Updated: 2023/01/02 12:19:07 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:07:00 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,24 @@ void	left_hex_width(char *hex_num, char *str, t_options options, t_var var)
 
 void	hash_input(char *str, t_options options, t_var var, char c)
 {
-	if (options.minus)
-		str[1] = c;
-	else
+	if (options.prec_flag)
 	{
 		if (options.prec < var.s_len)
 			options.prec = var.s_len;
 		str[var.str_len - options.prec - 2] = '0';
 		str[var.str_len - options.prec - 1] = c;
+	}
+	else
+	{
+		if (options.zero || options.minus)
+		{
+			str[0] = '0';
+			str[1] = c;
+		}
+		else
+		{
+			str[var.str_len - var.s_len - 2] = '0';
+			str[var.str_len - var.s_len - 1] = c;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:04:19 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/28 18:32:46 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:47:45 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,17 @@ void	nbr_value_input(char *str, char *itoa, t_options options, t_var var)
 
 void	neg_pos_input(long num, char *str, t_options options, t_var var)
 {
+	int	offset;
+
 	if (options.minus == 0)
 	{
 		if (num < 0)
 			right_neg_input(str, options, var);
 		else if ((options.blank == 1 || options.plus == 1) && num >= 0)
-			right_pos_input(str, options, var, 0);
+		{
+			offset = offset_setting(options, var);
+			right_pos_input(str, options, var, offset);
+		}
 	}
 	else
 	{
@@ -101,7 +106,7 @@ char	*nbr_input(long num, char *str, t_options options, char c)
 	{
 		itoa = ft_itoa(num);
 		if (!itoa)
-			return (0);
+			return (str);
 		var.s_idx = 0;
 		var.s_len = nbr_original_length(num);
 		var.str_idx = 0;

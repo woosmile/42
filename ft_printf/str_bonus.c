@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:32:22 by woosekim          #+#    #+#             */
-/*   Updated: 2023/01/02 14:37:21 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:03:35 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*str_input(char *s, char *str, t_options options)
 	char	*s_temp;
 
 	if (options.prec_flag == 1 && options.width == 0 && options.prec == 0)
-		return (0);
+		return (str);
 	if (s == 0)
 		s_temp = "(null)";
 	else

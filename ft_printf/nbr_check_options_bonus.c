@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:51:18 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/28 15:15:34 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:03:50 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	right_pos_input(char *str, t_options options, t_var var, int offset)
 	{
 		if (options.prec < var.s_len)
 			options.prec = var.s_len;
-		offset = offset_setting(options, var);
 		str[var.str_len - options.prec - offset] = ' ';
 		if (options.plus == 1)
 			str[var.str_len - options.prec - offset] = '+';
@@ -100,7 +99,6 @@ void	right_pos_input(char *str, t_options options, t_var var, int offset)
 		}
 		else
 		{
-			offset = offset_setting(options, var);
 			str[var.str_len - var.s_len - offset] = ' ';
 			if (options.plus == 1)
 				str[var.str_len - var.s_len - offset] = '+';
