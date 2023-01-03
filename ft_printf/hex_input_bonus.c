@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:46:26 by woosekim          #+#    #+#             */
-/*   Updated: 2023/01/02 18:07:00 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:50:51 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ void	left_hex_prec(char *hex_num, char *str, t_options options, t_var var)
 {
 	int	offset;
 
-	if (options.prec < var.s_len)
+	offset = options.prec - 1;
+	if ((options.prec < var.s_len) && (hex_num[0] != '0'))
 		offset = (options.blank || options.plus || options.hash) + options.hash;
-	else
+	else if ((options.prec >= var.s_len) && (hex_num[0] != '0'))
 		offset = options.prec - var.s_len + \
 		(options.blank || options.plus || options.hash) + options.hash;
 	while (var.str_idx < var.str_len)
@@ -80,19 +81,31 @@ void	left_hex_width(char *hex_num, char *str, t_options options, t_var var)
 {
 	int	offset;
 
-	offset = (options.blank || options.plus || options.hash) + options.hash;
+	if (hex_num[0] == '0')
+		offset = 0;
+	else
+		offset = (options.blank || options.plus || options.hash) + options.hash;
 	while (var.str_idx < var.str_len)
 	{
 		if (var.s_idx < var.s_len)
 			str[var.str_idx + offset] = hex_num[(var.s_idx)++];
 		else
-			str[var.str_idx + offset] = ' ';
+		{
+			if (var.str_idx + offset < var.str_len)
+				str[var.str_idx + offset] = ' ';
+		}
 		(var.str_idx)++;
 	}
 }
 
 void	hash_input(char *str, t_options options, t_var var, char c)
 {
+	if (options.minus)
+	{
+		str[0] = '0';
+		str[1] = c;
+		return ;
+	}
 	if (options.prec_flag)
 	{
 		if (options.prec < var.s_len)
@@ -102,15 +115,13 @@ void	hash_input(char *str, t_options options, t_var var, char c)
 	}
 	else
 	{
-		if (options.zero || options.minus)
+		if (options.zero)
 		{
 			str[0] = '0';
 			str[1] = c;
+			return ;
 		}
-		else
-		{
-			str[var.str_len - var.s_len - 2] = '0';
-			str[var.str_len - var.s_len - 1] = c;
-		}
+		str[var.str_len - var.s_len - 2] = '0';
+		str[var.str_len - var.s_len - 1] = c;
 	}
 }

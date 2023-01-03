@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:17:26 by woosekim          #+#    #+#             */
-/*   Updated: 2023/01/02 17:07:32 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:58:26 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ char	*hex_itoa(unsigned int num, int len, char c)
 	int			i;
 
 	hex_itoa = (char *)malloc(sizeof(char) * (len + 1));
+	if (!hex_itoa)
+		return (0);
 	hex_lower = "0123456789abcdef";
 	hex_upper = "0123456789ABCDEF";
 	i = len - 1;
@@ -112,6 +114,5 @@ char	*hex_input(unsigned int num, char *str, t_options options, char c)
 		free(hex_num);
 		return (str + var.str_len);
 	}
-	else
-		return (str);
+	return (str);
 }

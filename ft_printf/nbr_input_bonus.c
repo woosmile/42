@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:39:53 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/28 15:14:32 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:50:54 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,10 @@ void	left_nbr_width(char *str, char *itoa, t_options options, t_var var)
 		if (var.s_idx < var.s_len - negative)
 			str[var.str_idx + offset] = itoa[negative + (var.s_idx)++];
 		else
-			str[var.str_idx + offset] = ' ';
+		{
+			if (var.str_idx + offset < var.str_len)
+				str[var.str_idx + offset] = ' ';
+		}
 		(var.str_idx)++;
 	}
 }

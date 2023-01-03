@@ -3,7 +3,8 @@ CFLAGS = -Werror -Wall -Wextra
 NAME = libftprintf.a
 MANDATORY_SRCS = ft_printf.c print_addr.c print_char.c print_hex.c print_nbr_u.c print_nbr.c print_str.c
 BONUS_SRCS = check_options_bonus.c addr_bonus.c char_bonus.c hex_input_bonus.c hex_main_bonus.c \
-nbr_check_options_bonus.c nbr_input_bonus.c nbr_main_bonus.c str_bonus.c ft_printf_bonus.c total_length_bonus.c
+nbr_check_options_bonus.c nbr_input_bonus.c nbr_main_bonus.c str_bonus.c ft_printf_bonus.c \
+total_length_bonus.c
 MANDATORY_OBJS = $(MANDATORY_SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 

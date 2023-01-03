@@ -1,5 +1,6 @@
 #include "ft_printf_bonus.h"
 #include <stdio.h>
+#include <limits.h>
 
 void	bonus_test()
 {
@@ -19,12 +20,14 @@ void	bonus_test()
 	*/
 
 	
-	result_o = printf("%#X, %+5.i", -1, 0);
+	//result_o = printf("%+.d, %+.d, %+.d, %+.d, %+.d, %+.d, %+.d, %+.d", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	//result_o = printf("%-+d, %-+d, %-+d, %-+d, %-+d, %-+d, %-+d, %-+d", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
 	printf("\n");
-	result_ft = ft_printf("%#X, %+5.i", -1, 0);
-	
-	//result_o = printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %-1c, %.8s %d %%, %#-06.8x \n", num, s, s, c, c, s, num, num);
-	//result_ft = ft_printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %-1c, %.8s %d %%, %#-06.8x \n", num, s, s, c, c, s, num, num);
+	//result_ft = ft_printf("%+.d, %+.d, %+.d, %+.d, %+.d, %+.d, %+.d, %+.d", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	//result_ft = ft_printf("%-+d, %-+d, %-+d, %-+d, %-+d, %-+d, %-+d, %-+d", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+
+	result_o = printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %-1c, %.8s %d %%, %#-06.8x \n", num, s, s, c, c, s, num, num);
+	result_ft = ft_printf("TEST : %5.6d, %-20p, %-105.100s, %%%%%c, %-1c, %.8s %d %%, %#-06.8x \n", num, s, s, c, c, s, num, num);
 	/*
 	result_o = printf("1. %d, %0d, %1d, %2d, %3d, %4d, %5d, %10d, %20d.", num, num, num, num, num, num, num, num, num);
 	printf("\n");

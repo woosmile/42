@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:04:19 by woosekim          #+#    #+#             */
-/*   Updated: 2023/01/02 17:47:45 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:44:34 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	neg_pos_input(long num, char *str, t_options options, t_var var)
 			right_neg_input(str, options, var);
 		else if ((options.blank == 1 || options.plus == 1) && num >= 0)
 		{
-			offset = offset_setting(options, var);
+			offset = offset_setting(options, var, num);
 			right_pos_input(str, options, var, offset);
 		}
 	}

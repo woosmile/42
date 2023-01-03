@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:51:18 by woosekim          #+#    #+#             */
-/*   Updated: 2023/01/02 18:03:50 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:45:37 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ int	negative_check(char *itoa)
 	return (negative);
 }
 
-int	offset_setting(t_options options, t_var var)
+int	offset_setting(t_options options, t_var var, long num)
 {
 	if (options.prec_flag == 1)
 	{
+		if (num == 0 && options.prec == 0)
+			return (0);
 		if (var.str_len == options.prec)
 			return (0);
 		else
