@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:39:53 by woosekim          #+#    #+#             */
-/*   Updated: 2023/01/03 15:50:54 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:35:24 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	right_nbr_prec(char *str, char *itoa, t_options options, t_var var)
 		}
 		else
 		{
-			if (!(options.prec == 0 && itoa[0] == '0'))
+			if (!(options.prec == 0 && itoa[0] == '0') && \
+				(var.s_idx < var.s_len - negative))
 				str[var.str_idx] = itoa[negative + (var.s_idx)++];
 			else
 				str[var.str_idx] = ' ';
@@ -52,7 +53,10 @@ void	right_nbr_width(char *str, char *itoa, t_options options, t_var var)
 				str[var.str_idx] = ' ';
 		}
 		else
-			str[var.str_idx] = itoa[negative + (var.s_idx)++];
+		{
+			if (var.s_idx < var.s_len - negative)
+				str[var.str_idx] = itoa[negative + (var.s_idx)++];
+		}
 		(var.str_idx)++;
 	}
 }

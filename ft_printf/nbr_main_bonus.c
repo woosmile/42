@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:04:19 by woosekim          #+#    #+#             */
-/*   Updated: 2023/01/03 15:44:34 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:19:06 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	nbr_length_width_prec(long num, t_options options, char c, int *r_len)
 		else if (options.prec >= *r_len)
 		{
 			*r_len = options.prec;
-			if (c != 'u' && (options.blank || options.plus || (num < 0)))
+			if (c != 'u' && c != 'x' && c != 'X' && \
+			(options.blank || options.plus || (num < 0)))
 				(*r_len)++;
 			return (1);
 		}
@@ -117,6 +118,5 @@ char	*nbr_input(long num, char *str, t_options options, char c)
 		free(itoa);
 		return (str + var.str_len);
 	}
-	else
-		return (str);
+	return (str);
 }

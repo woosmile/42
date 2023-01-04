@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:17:26 by woosekim          #+#    #+#             */
-/*   Updated: 2023/01/03 15:58:26 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:50:59 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ int	hex_length(unsigned int num, t_options options, char c)
 	}
 	hex_original_length(num, &len);
 	nbr_length_width_prec(num, options, c, &len);
-	if (num != 0 && options.hash == 1 && (len < options.prec))
-	{
-		len = len + 2;
-		if (len <= options.prec)
-			len = options.prec;
-	}
 	return (len);
 }
 

@@ -2,22 +2,31 @@
 #include <stdio.h>
 #include <limits.h>
 
-void	test()
+void	bonus_test()
 {
 	int	result_o = 0;
 	int	result_ft = 0;
 
-	char	c = '@';
-	char	*s = "";
-	int		num = 54651866;
+	char	c = '0';
+	char	*s = "TEST STRING";
+	int		num = -123123;
 
-	printf("\n----------ft_printf BONUS start----------\n\n");
-
-	result_o = printf("char : %c, string : %s, address : %p, nbr_i : %i, nbr_u : %u, nbr_d : %d, nbr_x : %x, nbr_X : %X, %% : %%.", c, s, s, num, num, num, num, num);
+	printf("\n----------ft_printf BONUS test start----------\n\n");
+	/*
+	result_o = printf("%#15.X, %p, %105.100s", num, s, s);
 	printf("\n");
-	result_ft = ft_printf("char : %c, string : %s, address : %p, nbr_i : %i, nbr_u : %u, nbr_d : %d, nbr_x : %x, nbr_X : %X, %% : %%.", c, s, s, num, num, num, num, num);
-	
-	/* nbr test */
+	result_ft = ft_printf("%#15.X, %p, %105.100s", num, s, s);
+	*/
+	//result_o = printf("%+.d, %+.d, %+.d, %+.d, %+.d, %+.d, %+.d, %+.d", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	//result_o = printf("%-+d, %-+d, %-+d, %-+d, %-+d, %-+d, %-+d, %-+d", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	//printf("\n");
+	//result_ft = ft_printf("%+.d, %+.d, %+.d, %+.d, %+.d, %+.d, %+.d, %+.d", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	//result_ft = ft_printf("%-+d, %-+d, %-+d, %-+d, %-+d, %-+d, %-+d, %-+d", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	//result_o = printf("%-+ 10.49d", num);
+	//printf("\n");
+	//result_ft = ft_printf("%-+ 10.49d", num);
+	//result_o = printf("TEST : %5.6d, %-20p, %-3.15s, %%%%%c, %-1c, %.8s %d %%, %#- 06.8x \n", num, s, s, c, c, s, num, num);
+	//result_ft = ft_printf("TEST : %5.6d, %-20p, %-3.15s, %%%%%c, %-1c, %.8s %d %%, %#- 06.8x \n", num, s, s, c, c, s, num, num);
 	/*
 	result_o = printf("1. %d, %0d, %1d, %2d, %3d, %4d, %5d, %10d, %20d.", num, num, num, num, num, num, num, num, num);
 	printf("\n");
@@ -70,16 +79,45 @@ void	test()
 	result_ft = ft_printf("10. % -d, % -1d, % -2d, % -3d, % -4d, % -5d, % -10d, % -20d, % -50d.", num, num, num, num, num, num, num, num, num);
 	printf("\n\n");
 	*/
-
-	printf("\noriginal printf return : %d\n", result_o);
+	printf("\n");
+	printf("original printf return : %d\n", result_o);
 	printf("ft_printf return       : %d\n", result_ft);
 
-	ft_printf("\n----------ft_printf test end----------\n\n");
+	printf("\n----------ft_printf BONUS test end----------\n\n");
+}
+
+void	mandatory_test()
+{
+	int		result_o;
+	int		result_ft;
+
+	char	c = '@';
+	char 	*s = "TEST ABCDEFG 12345789 !@#$%%^&*()_+=\\";
+	int		num = 123456789;
+	
+	printf("\n----------ft_printf MANDATORY test start----------\n\n");
+
+	printf("original printf\n");
+	result_o = printf("char : %c, string : %s, addr : %p, nbr_d : %d, nbr_i : %i, nbr_u : %u, nbr_x : %x, nbr_X : %X\n", c, s, &c, num, num, num, num, num);
+	ft_printf("\nft_printf\n");
+	result_ft = ft_printf("char : %c, string : %s, addr : %p, nbr_d : %d, nbr_i : %i, nbr_u : %u, nbr_x : %x, nbr_X : %X\n", c, s, &c, num, num, num, num, num);
+	/*
+	printf("original printf : NULL TEST\n");
+	result_o = printf("NULL STRING : %s, NULL ADDR : %p\n", NULL, NULL);
+	ft_printf("\nft_printf : NULL TEST\n");
+	result_ft = ft_printf("NULL STRING : %s, NULL ADDR : %p\n", NULL, NULL);
+	*/
+	printf("\n");
+	printf("original printf return : %d\n", result_o);
+	printf("ft_printf return       : %d\n", result_ft);
+
+	printf("\n----------ft_printf MANDATORY test end----------\n\n");
 }
 
 int	main(void)
 {
-	test();
+	//mandatory_test();
+	bonus_test();
 
 	return (0);
 }

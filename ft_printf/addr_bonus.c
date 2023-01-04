@@ -6,7 +6,7 @@
 /*   By: woosekim <woosekim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:17:26 by woosekim          #+#    #+#             */
-/*   Updated: 2022/12/19 18:22:50 by woosekim         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:42:02 by woosekim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,12 @@ void	right_addr(unsigned long long addr_temp, char *str, int addr_len)
 		*(str + i++) = ' ';
 	*(str + i) = '0';
 	*(str + i + 1) = 'x';
-	if (addr_temp == 0)
-		*(str + i + 2) = '0';
-	else
+	i = addr_len - 1;
+	while (i >= addr_len - s_len)
 	{
-		i = addr_len - 1;
-		while (i >= addr_len - s_len)
-		{
-			str[i] = hex[addr_temp % 16];
-			addr_temp = addr_temp / 16;
-			i--;
-		}
+		str[i] = hex[addr_temp % 16];
+		addr_temp = addr_temp / 16;
+		i--;
 	}
 }
 
@@ -92,8 +87,6 @@ void	left_addr(unsigned long long addr_temp, char *str, int addr_len)
 	s_len = addr_original_length(addr_temp);
 	*(str) = '0';
 	*(str + 1) = 'x';
-	if (addr_temp == 0)
-		*(str + 2) = '0';
 	i = s_len + 1;
 	while (i >= 2)
 	{
