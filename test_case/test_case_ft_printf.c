@@ -11,7 +11,7 @@ void	test()
 	char	*s = "";
 	int		num = 54651866;
 
-	printf("\n----------ft_printf BONUS start----------\n\n");
+	printf("\n----------ft_printf test start----------\n\n");
 
 	result_o = printf("char : %c, string : %s, address : %p, nbr_i : %i, nbr_u : %u, nbr_d : %d, nbr_x : %x, nbr_X : %X, %% : %%.", c, s, s, num, num, num, num, num);
 	printf("\n");
