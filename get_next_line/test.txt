@@ -1,0 +1,6 @@
+TEST GET NEXT LINE
+TEST TEST @@ ## $$
+ABC 123 456 789
+asdfasdf
+adsfadsfasdf
+
